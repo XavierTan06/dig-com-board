@@ -7,15 +7,7 @@ import { getPosts } from './actions';
 
 export default function Home() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
-  interface PostType {
-    post_title: string;
-    post_text: string;
-    like_count: number;
-    reply_count: number;
-    date: string;
-  }
-
-  const [posts, setPosts] = useState<PostType[]>([]);
+  const [posts, setPosts] = useState<Record<string, any>[]>([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,14 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const fetchedPosts: Record<string, any>[] = await getPosts();
-      const posts: PostType[] = fetchedPosts.map(post => ({
-        post_title: post.post_title,
-        post_text: post.post_text,
-        like_count: post.like_count,
-        reply_count: post.reply_count,
-        date: post.date,
-      }));
+      const posts = await getPosts();
       setPosts(posts);
       console.log(posts);
     };
