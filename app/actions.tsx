@@ -4,9 +4,14 @@
 import { neon } from '@neondatabase/serverless';
 
 export async function create(formData: FormData) {
-  // Connect to the Neon database
   const sql = neon(`${process.env.DATABASE_URL}`);
   const comment = formData.get('comment');
-  // Insert the comment from the form into the Postgres database
   await sql('INSERT INTO test_post (title, contents) VALUES ($1, $2)', ['post title', comment]);
+}
+
+export async function getPosts() {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+  const result = await sql('SELECT post_title, post_text, like_count, reply_count, post_date FROM test_post');
+  console.log(result);
+  return result;
 }
