@@ -3,32 +3,44 @@ import { FaThumbsUp, FaHeart } from 'react-icons/fa';
 
 interface PostProps {
     title: string;
-    thumbsUp: number;
-    likes: number;
+    text: string;
+    like_count: number;
+    reply_count: number;
+    date: string;
 }
 
-const Post: React.FC<PostProps> = ({ title, thumbsUp, likes }) => {
+const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date }) => {
     return (
         <div style={styles.postContainer}>
-            <h2>{title}</h2>
+            <h2 style={styles.title}>{title}</h2>
+            <p style={styles.text}>{text}</p>
             <div style={styles.iconsContainer}>
                 <div style={styles.iconItem}>
-                    <FaThumbsUp /> {thumbsUp}
+                    <FaThumbsUp /> {like_count}
                 </div>
                 <div style={styles.iconItem}>
-                    <FaHeart /> {likes}
+                    <FaHeart /> {reply_count}
                 </div>
             </div>
+            <small style={styles.date}>{date}</small>
         </div>
     );
 };
 
 const styles = {
     postContainer: {
-        border: '1px solid #ccc',
+        border: '1px solid red',
+        backgroundColor: 'grey',
+        color: 'blue',
         padding: '16px',
         borderRadius: '8px',
         marginBottom: '16px',
+    },
+    title: {
+        color: 'blue',
+    },
+    text: {
+        color: 'blue',
     },
     iconsContainer: {
         display: 'flex',
@@ -39,6 +51,10 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         marginRight: '16px',
+        color: 'blue',
+    },
+    date: {
+        color: 'blue',
     },
 };
 
