@@ -1,13 +1,13 @@
-// filepath: /c:/Users/whats/OneDrive/Desktop/T8/Capstone/dig-com-board/app/page.tsx
 "use client";
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Post from "./post";
-import { create } from './actions';
+import { create, getPosts } from './actions';
 
 export default function Home() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
+  const [posts, setPosts] = useState<Record<string, any>[]>([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,13 +22,23 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await getPosts();
+      setPosts(posts);
+      console.log(posts);
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Post />
-      <form action={create}>
-        <input type="text" placeholder="write a comment" name="comment" />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="posts-container">
+        {posts.map((post, index) => (
+          <Post key={index} title={post.post_title} text={post.post_text} like_count={post.like_count} reply_count={post.reply_count} date={post.date} />
+        ))}
+      </div>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -39,13 +49,6 @@ export default function Home() {
           priority
         />
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
           <li>Save and see your changes instantly. Your screen size is {screenSize.width} by {screenSize.height}!</li>
         </ol>
 
@@ -75,6 +78,7 @@ export default function Home() {
           </a>
         </div>
       </main>
+
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
