@@ -15,6 +15,7 @@ const customRules = {
 };
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  customRules
 ];
 
 export default eslintConfig;
