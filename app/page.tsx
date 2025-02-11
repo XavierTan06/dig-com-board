@@ -3,11 +3,19 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Post from "./post";
-import { create, getPosts } from './actions';
+import { getPosts } from './actions';
 
 export default function Home() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
-  const [posts, setPosts] = useState<Record<string, any>[]>([]);
+  interface PostType {
+    post_title: string;
+    post_text: string;
+    like_count: number;
+    reply_count: number;
+    date: string;
+  }
+
+  const [posts, setPosts] = useState<PostType[]>([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,7 +32,14 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const posts = await getPosts();
+      const fetchedPosts: Record<string, any>[] = await getPosts();
+      const posts: PostType[] = fetchedPosts.map(post => ({
+        post_title: post.post_title,
+        post_text: post.post_text,
+        like_count: post.like_count,
+        reply_count: post.reply_count,
+        date: post.date,
+      }));
       setPosts(posts);
       console.log(posts);
     };
