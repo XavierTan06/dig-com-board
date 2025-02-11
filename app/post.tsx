@@ -11,51 +11,20 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date }) => {
     return (
-        <div style={styles.postContainer}>
-            <h2 style={styles.title}>{title}</h2>
-            <p style={styles.text}>{text}</p>
-            <div style={styles.iconsContainer}>
-                <div style={styles.iconItem}>
-                    <FaThumbsUp /> {like_count}
+        <div className="bg-gray-200 p-4 rounded-lg mb-4 border border-gray-300">
+            <h2 className="text-blue-600 text-xl font-semibold">{title}</h2>
+            <p className="text-blue-500 mt-2">{text}</p>
+            <div className="flex items-center mt-3">
+                <div className="flex items-center text-blue-500 mr-6">
+                    <FaThumbsUp className="mr-2" /> {like_count}
                 </div>
-                <div style={styles.iconItem}>
-                    <FaHeart /> {reply_count}
+                <div className="flex items-center text-blue-500">
+                    <FaHeart className="mr-2" /> {reply_count}
                 </div>
             </div>
-            <small style={styles.date}>{date}</small>
+            <small className="text-blue-400 mt-2 block">{date}</small>
         </div>
     );
-};
-
-const styles = {
-    postContainer: {
-        border: '1px solid red',
-        backgroundColor: 'grey',
-        color: 'blue',
-        padding: '16px',
-        borderRadius: '8px',
-        marginBottom: '16px',
-    },
-    title: {
-        color: 'blue',
-    },
-    text: {
-        color: 'blue',
-    },
-    iconsContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: '8px',
-    },
-    iconItem: {
-        display: 'flex',
-        alignItems: 'center',
-        marginRight: '16px',
-        color: 'blue',
-    },
-    date: {
-        color: 'blue',
-    },
 };
 
 export default Post;
