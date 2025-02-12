@@ -11,10 +11,10 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date }) => {
     return (
-        <div className="bg-gray-200 p-4 rounded-lg mb-4 border border-gray-300">
-            <h2 className="text-blue-600 text-xl font-semibold">{title}</h2>
-            <p className="text-blue-500 mt-2">{text}</p>
-            <div className="flex items-center mt-3">
+        <div className="bg-gray-200 p-4 rounded-lg mb-4 border border-gray-300 md:p-6 lg:p-8">
+            <h2 className="text-blue-600 text-xl font-semibold md:text-2xl lg:text-3xl">{title}</h2>
+            <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6">{text}</p>
+            <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
                 <div className="flex items-center text-blue-500 mr-6">
                     <FaThumbsUp className="mr-2" /> {like_count}
                 </div>
@@ -22,7 +22,7 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date 
                     <FaHeart className="mr-2" /> {reply_count}
                 </div>
             </div>
-            <small className="text-blue-400 mt-2 block">{date}</small>
+            <small className="text-blue-400 mt-2 block md:mt-4 lg:mt-6">{date}</small>
         </div>
     );
 };
