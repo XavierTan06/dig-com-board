@@ -12,16 +12,18 @@ export default function Home() {
   const [posts, setPosts] = useState<Record<string, any>[]>([]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setScreenSize({ width: window.innerWidth, height: window.innerHeight });
-    };
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        setScreenSize({ width: window.innerWidth, height: window.innerHeight });
+      };
 
-    handleResize(); // Set initial size
-    window.addEventListener("resize", handleResize);
+      handleResize(); // Set initial size
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
   useEffect(() => {
