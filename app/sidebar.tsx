@@ -1,43 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "react-sidebar";
 import Header from "./header";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
-interface SideMenuState {
-  sidebarOpen: boolean;
-}
+const SideMenu: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-class SideMenu extends React.Component<{}, SideMenuState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      sidebarOpen: true
-    };
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-  }
+  const onSetSidebarOpen = (open: boolean) => {
+    setSidebarOpen(open);
+  };
 
-  onSetSidebarOpen(open: boolean) {
-    this.setState({ sidebarOpen: open });
-  }
-
-  render() {
-    return (
-      <Sidebar
-        sidebar={
-          <div>
-            <b>Sidebar content</b>
-            <ul>
-            </ul>
-          </div>
-        }
-        open={this.state.sidebarOpen}
-        onSetOpen={this.onSetSidebarOpen}
-        styles={{ sidebar: { background: "green" } }}
-      >
-        <Header toggleSidebar={() => this.onSetSidebarOpen(!this.state.sidebarOpen)} />
-      </Sidebar>
-    );
-  }
-}
+  return (
+    <Sidebar
+      sidebar={
+        <div>
+          <b>Sidebar content</b>
+          <ul>
+            <li>
+              <Link to="/tester">Tester</Link>
+            </li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+        </div>
+      }
+      open={sidebarOpen}
+      onSetOpen={onSetSidebarOpen}
+      styles={{ sidebar: { background: "green" } }}
+    >
+      <Header toggleSidebar={() => onSetSidebarOpen(!sidebarOpen)} />
+      {/* The Outlet renders the nested routes like Home or Create */}
+      <div>
+        <Outlet />
+      </div>
+    </Sidebar>
+  );
+};
 
 export default SideMenu;
