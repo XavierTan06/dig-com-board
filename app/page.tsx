@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import Post from "./post";
-import Header from "./header";
 import { getPosts } from './actions';
 import Create from "./create";
 import SideMenu from "./sidebar";
@@ -12,12 +10,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 export default function Home() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
   const [posts, setPosts] = useState<Record<string, any>[]>([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    console.log(isSidebarOpen);
-  };
 
   useEffect(() => {
     const handleResize = () => {
