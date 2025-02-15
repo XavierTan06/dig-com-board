@@ -3,11 +3,19 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Post from "./post";
+import Header from "./header";
 import { getPosts } from './actions';
+import Side from "./sidebar";
 
 export default function Home() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
   const [posts, setPosts] = useState<Record<string, any>[]>([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    console.log(isSidebarOpen);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +42,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <Header toggleSidebar={toggleSidebar} />
       <div className="posts-container grid gap-8 sm:grid-cols-1 lg:grid-cols-1 mt-8">
         {posts.map((post, index) => (
           <Post key={index} title={post.post_title} text={post.post_text} like_count={post.like_count} reply_count={post.reply_count} date={post.date} />
