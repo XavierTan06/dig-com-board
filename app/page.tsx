@@ -42,20 +42,7 @@ export default function Home() {
         <SideMenu></SideMenu>
         <Routes>
           <Route path="/tester" element={<Create />} />
-          <Route path="/" element={
-            <>
-              <div className="posts-container grid gap-8 sm:grid-cols-1 lg:grid-cols-1 mt-8">
-                {posts.map((post, index) => (
-                  <Post key={index} title={post.post_title} text={post.post_text} like_count={post.like_count} reply_count={post.reply_count} date={post.date} />
-                ))}
-              </div>
-              <main className="flex flex-col gap-8 items-center sm:items-start mt-8">
-                <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-                  <li>Save and see your changes instantly. Your screen size is {screenSize.width} by {screenSize.height}!</li>
-                </ol>
-              </main>
-            </>
-          } />
+
         </Routes>
       </div>
     </BrowserRouter>
