@@ -23,7 +23,7 @@ export default function App() {
       <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <SideMenu />
         <Routes>
-          <Route path="/tester" element={<Create />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/" element={<HomePg />} />
         </Routes>
       </div>

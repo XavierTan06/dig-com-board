@@ -17,7 +17,7 @@ const SideMenu: React.FC = () => {
           <b>Sidebar content</b>
           <ul>
             <li>
-              <Link to="/tester">Tester</Link>
+              <Link to="/create">Create</Link>
             </li>
             <li>
               <Link to="/">Home</Link>
