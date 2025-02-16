@@ -1,12 +1,18 @@
-// filepath: /c:/Users/whats/OneDrive/Desktop/T8/Capstone/dig-com-board/app/actions.ts
 'use server';
 
 import { neon } from '@neondatabase/serverless';
+import { v4 as uuidv4 } from 'uuid';
 
 export async function create(formData: FormData) {
   const sql = neon(`${process.env.DATABASE_URL}`);
-  const comment = formData.get('comment');
-  await sql('INSERT INTO test_post (title, contents) VALUES ($1, $2)', ['post title', comment]);
+  const postId = uuidv4();
+  const postTitle = formData.get('post_title');
+  const postText = formData.get('post_text');
+  const postDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })); // GMT+8
+  await sql(
+    'INSERT INTO test_post (post_id, post_title, post_text, like_count, reply_count, post_date) VALUES ($1, $2, $3, $4, $5, $6)',
+    [postId, postTitle, postText, 0, 0, postDate]
+  );
 }
 
 export async function getPosts() {
