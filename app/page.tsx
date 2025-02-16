@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Create from "./pages/create";
+import Create from "./create/page";
 import SideMenu from "./components/sidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePg from "./pages/HomePg";
