@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Post from "./post";
-import Header from "./header";
+import Post from "./components/post";
+import Header from "./components/header";
 import { getPosts } from './actions';
-import Create from "./create";
-import SideMenu from "./sidebar";
+import Create from "./pages/create";
+import SideMenu from "./components/sidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function Home() {
