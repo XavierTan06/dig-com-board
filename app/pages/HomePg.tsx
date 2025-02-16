@@ -2,26 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Post from "../components/post";
-import Header from "../components/header";
 import { getPosts } from '../actions';
-import Create from "./create";
-import SideMenu from "../components/sidebar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function HomePg() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
   const [posts, setPosts] = useState<Record<string, any>[]>([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isClient, setIsClient] = useState(false); // State to check if the component is rendered on the client
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    console.log(isSidebarOpen);
-  };
-
-  useEffect(() => {
-    setIsClient(true); // Set to true once the component is mounted on the client side
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,11 +30,6 @@ export default function HomePg() {
 
     fetchPosts();
   }, []);
-
-  if (!isClient) {
-    // Optionally render loading screen while waiting for client-side rendering
-    return <div>Loading...</div>;
-  }
 
   return (
     <><div className="posts-container grid gap-8 sm:grid-cols-1 lg:grid-cols-1 mt-8">
