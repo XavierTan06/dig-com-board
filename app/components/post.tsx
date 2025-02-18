@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaThumbsUp, FaHeart } from 'react-icons/fa';
 import { incrementLike } from '../actions';
 
@@ -12,10 +12,18 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date, id }) => {
+    const [likes, setLikes] = useState(like_count);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
     const handleLikeClick = async () => {
+        if (isButtonDisabled) return;
+        setLikes(likes + 1);
+        setIsButtonDisabled(true);
         await incrementLike(id);
-        alert('Like count incremented for' + id);
-        // Optionally, you can add code to update the UI after incrementing the like count
+        alert('Liked!');
+        setTimeout(() => {
+            setIsButtonDisabled(false);
+        }, 10000);
     };
 
     return (
@@ -24,7 +32,11 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
             <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6">{text}</p>
             <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
                 <div className="flex items-center text-blue-500 mr-6">
-                    <FaThumbsUp className="mr-2 cursor-pointer" onClick={handleLikeClick} /> {like_count}
+                    <FaThumbsUp 
+                        className={`mr-2 cursor-pointer ${isButtonDisabled ? 'opacity-50' : ''}`} 
+                        onClick={handleLikeClick} 
+                    /> 
+                    {likes}
                 </div>
                 <div className="flex items-center text-blue-500">
                     <FaHeart className="mr-2" /> {reply_count}
