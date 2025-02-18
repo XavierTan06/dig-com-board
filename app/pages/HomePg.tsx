@@ -40,7 +40,8 @@ export default function HomePg() {
                   text={post.post_text}
                   like_count={post.like_count}
                   reply_count={post.reply_count}
-                  date={post.date} />
+                  date={post.date}
+                  id={post.post_id} />
           ))}
       </div><main className="flex flex-col gap-8 items-center sm:items-start mt-8">
               <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">

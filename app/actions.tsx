@@ -17,7 +17,15 @@ export async function create(formData: FormData) {
 
 export async function getPosts() {
   const sql = neon(`${process.env.DATABASE_URL}`);
-  const result = await sql('SELECT post_title, post_text, like_count, reply_count, post_date FROM test_post');
+  const result = await sql('SELECT post_title, post_text, like_count, reply_count, post_date, post_id FROM test_post');
   console.log(result);
   return result;
+}
+
+export async function incrementLike(postId: string) {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+  await sql(
+    'UPDATE test_post SET like_count = like_count + 1 WHERE post_id = $1',
+    [postId]
+  );
 }
