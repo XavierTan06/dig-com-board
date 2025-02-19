@@ -44,3 +44,9 @@ form {
   position: relative;
   z-index: 10; /* Ensure the form is above other elements */
 }
+
+header {
+  background-color: #007bff;
+  color: white;
+  z-index: 3;
+}

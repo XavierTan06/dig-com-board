@@ -3,13 +3,12 @@ import Sidebar from "react-sidebar";
 import Header from "./header";
 import { Link, Outlet } from "react-router-dom";
 
-const SideMenu: React.FC = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+interface SideBarProps {
+  sidebarOpen: boolean;
+  onSetSidebarOpen: (open: boolean) => void;
+}
 
-  const onSetSidebarOpen = (open: boolean) => {
-    setSidebarOpen(open);
-  };
-
+const SideMenu: React.FC<SideBarProps> = ({ sidebarOpen, onSetSidebarOpen }) => {
   return (
     <Sidebar
       sidebar={
@@ -29,7 +28,6 @@ const SideMenu: React.FC = () => {
       onSetOpen={onSetSidebarOpen}
       styles={{ sidebar: { background: "green" } }}
     >
-      <Header toggleSidebar={() => onSetSidebarOpen(!sidebarOpen)} />
       {/* The Outlet renders the nested routes like Home or Create */}
       <div>
         <Outlet />

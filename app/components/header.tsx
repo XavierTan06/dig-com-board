@@ -8,9 +8,11 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     return (
-        <header className="w-full flex items-center justify-between p-4 bg-blue-300">
-            <div className="header__icon" onClick={toggleSidebar}>
+        <header className="flex items-center justify-between p-4 bg-blue-300 w-full">
+            <div className="header__icon">
+                <button onClick={toggleSidebar}>
                 <FiMenu />
+                </button>
             </div>
             <div className="header__title text-center flex-grow">
                 <h1>Title Name</h1>
