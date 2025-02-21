@@ -15,17 +15,36 @@ export async function create(formData: FormData) {
   );
 }
 
-export async function getPosts() {
+export async function getPosts(id: null | string = null) {
   const sql = neon(`${process.env.DATABASE_URL}`);
+  if (id) {
+    const result = await sql('SELECT post_title, post_text, like_count, reply_count, post_date, post_id FROM test_post WHERE post_id = $1', [id]);
+    return result;
+  }
   const result = await sql('SELECT post_title, post_text, like_count, reply_count, post_date, post_id FROM test_post');
   console.log(result);
   return result;
 }
 
-export async function incrementLike(postId: string) {
+export async function getReplies(id: string) {
   const sql = neon(`${process.env.DATABASE_URL}`);
-  await sql(
-    'UPDATE test_post SET like_count = like_count + 1 WHERE post_id = $1',
-    [postId]
-  );
+  const result = await sql('SELECT reply_text, reply_likes, reply_date FROM test_reply WHERE parent_post = $1', [id]);
+  console.log(result);
+  return result;
+}
+
+export async function incrementLike(postId: string, isReply = false) {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+  if (isReply) {
+    await sql(
+      'UPDATE test_reply SET reply_likes = reply_likes + 1 WHERE parent_post = $1',
+      [postId]
+    );
+  }
+  else {
+    await sql(
+      'UPDATE test_post SET like_count = like_count + 1 WHERE post_id = $1',
+      [postId]
+    );
+  }
 }
