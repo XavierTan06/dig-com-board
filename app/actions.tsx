@@ -15,6 +15,16 @@ export async function create(formData: FormData) {
   );
 }
 
+export async function reply(formData: FormData, parentPost: string) {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+  const replyText = formData.get('reply_text');
+  const replyDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })); // GMT+8
+  await sql(
+    'INSERT INTO test_reply (reply_text, reply_likes, reply_date, parent_post) VALUES ($1, $2, $3, $4)',
+    [replyText, 0, replyDate, parentPost]
+  );
+}
+
 export async function getPosts(id: null | string = null) {
   const sql = neon(`${process.env.DATABASE_URL}`);
   if (id) {
