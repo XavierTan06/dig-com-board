@@ -24,7 +24,8 @@ export default function HomePg() {
   useEffect(() => {
     const fetchPosts = async () => {
       const posts = await getPosts();
-      setPosts(posts);
+      const sortedPosts = posts.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime());
+      setPosts(sortedPosts);
       console.log(posts);
     };
 
@@ -40,7 +41,7 @@ export default function HomePg() {
                   text={post.post_text}
                   like_count={post.like_count}
                   reply_count={post.reply_count}
-                  date={post.date}
+                  date={new Date(post.post_date).toLocaleString()}
                   id={post.post_id} />
           ))}
       </div><main className="flex flex-col gap-8 items-center sm:items-start mt-8">

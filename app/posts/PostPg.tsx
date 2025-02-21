@@ -22,7 +22,8 @@ export default function PostPg() {
         const fetchReplies = async () => {
             if (id) {
                 const replies = await getReplies(id);
-                setReplies(replies);
+                const sortedReplies = replies.sort((a, b) => new Date(b.reply_date).getTime() - new Date(a.reply_date).getTime());
+                setReplies(sortedReplies);
                 console.log(replies);
             } else {
                 console.error("Post ID is undefined");
@@ -53,7 +54,7 @@ export default function PostPg() {
                     text={post.post_text}
                     like_count={post.like_count}
                     reply_count={post.reply_count}
-                    date={post.date}
+                    date={new Date(post.post_date).toLocaleString()}
                     id={post.post_id} />
             ))}
             <form onSubmit={handleReply}>
@@ -74,7 +75,7 @@ export default function PostPg() {
                     key={index}
                     text={reply.reply_text}
                     like_count={reply.reply_likes}
-                    date={reply.reply_date} //Error: Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
+                    date={new Date(reply.reply_date).toLocaleString()} //Error: Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
                     id={reply.parent_post} />
             ))}
         </div>
