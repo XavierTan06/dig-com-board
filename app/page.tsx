@@ -5,7 +5,7 @@ import Create from "./create/page";
 import SideMenu from "./components/sidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePg from "./pages/HomePg";
-import PostPg from "./posts/PostPg";
+import PostThreadPg from "./posts/PostPg";
 
 export default function App() {
   const [isClient, setIsClient] = useState(false); // State to check if the component is rendered on the client
@@ -25,7 +25,7 @@ export default function App() {
         <SideMenu />
         <Routes>
           <Route path="/create" element={<Create />} />
-          <Route path="/post/:id" element={<PostPg />} />
+          <Route path="/post/:id" element={<PostThreadPg />} />
           <Route path="/" element={<HomePg />} />
         </Routes>
       </div>

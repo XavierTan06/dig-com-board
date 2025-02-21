@@ -6,17 +6,17 @@ import Post from "../components/post";
 import Comment from "../components/comment";
 import { getPosts, getReplies, reply } from "../actions";
 
-export default function PostPg() {
+export default function PostThreadPg() {
     const { id } = useParams();
-    const [posts, setPosts] = useState<Record<string, any>[]>([]);
+    const [post, setPost] = useState<Record<string, any>[]>([]);
     const [replies, setReplies] = useState<Record<string, any>[]>([]);
     const [myReply, setMyReply] = useState('');
     
     useEffect(() => {
         const fetchPosts = async () => {
-            const posts = await getPosts(id);
-            setPosts(posts);
-            console.log(posts);
+            const mainPost = await getPosts(id);
+            setPost(mainPost);
+            console.log(mainPost);
         };
         
         const fetchReplies = async () => {
@@ -47,7 +47,7 @@ export default function PostPg() {
 
     return (
         <div className="posts-container grid gap-0 sm:grid-cols-1 lg:grid-cols-1 mt-0">
-            {posts.map((post, index) => (
+            {post.map((post, index) => (
                 <Post
                     key={index}
                     title={post.post_title}
