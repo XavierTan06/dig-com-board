@@ -33,7 +33,7 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
             <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
                 <div className="flex items-center text-blue-500 mr-6">
                     <FaThumbsUp 
-                        className={`mr-2 cursor-pointer ${isButtonDisabled ? 'opacity-50' : ''}`} 
+                        className={`mr-2 cursor-pointer ${isButtonDisabled ? 'opacity-50' : ''} z-10`} 
                         onClick={handleLikeClick} 
                     /> 
                     {likes}
