@@ -22,6 +22,9 @@ const SideMenu: React.FC = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
+            <li>
+              <Link to="/post/a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11">Sample Thread</Link>
+            </li>
           </ul>
         </div>
       }
