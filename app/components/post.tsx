@@ -27,7 +27,7 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
     };
 
     return (
-        <div className="bg-gray-200 p-4 rounded-lg mb-4 border border-gray-300 md:p-6 lg:p-8">
+        <div className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 md:p-6 lg:p-8">
             <h2 className="text-blue-600 text-xl font-semibold md:text-2xl lg:text-3xl">{title}</h2>
             <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6">{text}</p>
             <div className="flex items-center mt-3 md:mt-4 lg:mt-6">

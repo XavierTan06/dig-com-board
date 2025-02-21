@@ -32,7 +32,7 @@ export default function HomePg() {
   }, []);
 
   return (
-    <><div className="posts-container grid gap-8 sm:grid-cols-1 lg:grid-cols-1 mt-8">
+    <><div className="posts-container grid gap-0 sm:grid-cols-1 lg:grid-cols-1 mt-0">
           {posts.map((post, index) => (
               <Post
                   key={index}
