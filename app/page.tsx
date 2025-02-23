@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Create from "./create/page";
-import SideMenu from "./components/sidebar";
+import SideMenu from "../components/sidebar";
 import HomePg from "./pages/HomePg";
 import PostThreadPg from "./posts/PostPg";
 import { useRouter, usePathname } from "next/navigation";
@@ -23,10 +23,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <SideMenu />
-      {pathname === "/create" && <Create />}
-      {pathname === "/" && <HomePg />}
-      {pathname.startsWith("/post/") && <PostThreadPg />}
+      <HomePg />
     </div>
   );
 }

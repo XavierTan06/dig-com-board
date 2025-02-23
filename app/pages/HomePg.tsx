@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Post from "../components/post";
+import Post from "../../components/post";
 import { getPosts } from '../actions';
 
 export default function HomePg() {

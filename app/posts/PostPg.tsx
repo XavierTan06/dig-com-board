@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Post from "../components/post";
-import Comment from "../components/comment";
+import Post from "../../components/post";
+import Comment from "../../components/comment";
 import { getPosts, getReplies, reply } from "../actions";
 
 export default function PostThreadPg() {
