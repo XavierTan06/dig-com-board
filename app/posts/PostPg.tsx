@@ -1,27 +1,30 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useRouter } from "next/router";
 import Post from "../components/post";
 import Comment from "../components/comment";
 import { getPosts, getReplies, reply } from "../actions";
 
 export default function PostThreadPg() {
-    const { id } = useParams();
+    const router = useRouter();
+    const { id } = router.query;
     const [post, setPost] = useState<Record<string, any>[]>([]);
     const [replies, setReplies] = useState<Record<string, any>[]>([]);
     const [myReply, setMyReply] = useState('');
-    
+
     useEffect(() => {
+        if (!id) return;
+
         const fetchPosts = async () => {
-            const mainPost = await getPosts(id);
+            const mainPost = await getPosts(id as string);
             setPost(mainPost);
             console.log(mainPost);
         };
-        
+
         const fetchReplies = async () => {
             if (id) {
-                const replies = await getReplies(id);
+                const replies = await getReplies(id as string);
                 const sortedReplies = replies.sort((a, b) => new Date(b.reply_date).getTime() - new Date(a.reply_date).getTime());
                 setReplies(sortedReplies);
                 console.log(replies);
@@ -30,16 +33,16 @@ export default function PostThreadPg() {
             }
         };
 
-        fetchPosts()
+        fetchPosts();
         fetchReplies();
-    }, []);
+    }, [id]);
 
     const handleReply = async (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('reply_text', myReply);
         if (id) {
-            await reply(formData, id);
+            await reply(formData, id as string);
         } else {
             console.error("Post ID is undefined");
         }
@@ -75,7 +78,7 @@ export default function PostThreadPg() {
                     key={index}
                     text={reply.reply_text}
                     like_count={reply.reply_likes}
-                    date={new Date(reply.reply_date).toLocaleString()} //Error: Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
+                    date={new Date(reply.reply_date).toLocaleString()}
                     id={reply.parent_post} />
             ))}
         </div>

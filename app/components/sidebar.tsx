@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "react-sidebar";
 import Header from "./header";
-import { Link, Outlet } from "react-router-dom";
+import Link from "next/link";
 
 const SideMenu: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -17,13 +17,13 @@ const SideMenu: React.FC = () => {
           <b>Sidebar content</b>
           <ul>
             <li>
-              <Link to="/create">Create</Link>
+              <Link href="/create">Create</Link>
             </li>
             <li>
-              <Link to="/">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link to="/post/a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11">Sample Thread</Link>
+              <Link href="/post/a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11">Sample Thread</Link>
             </li>
           </ul>
         </div>
@@ -35,7 +35,7 @@ const SideMenu: React.FC = () => {
       <Header toggleSidebar={() => onSetSidebarOpen(!sidebarOpen)} />
       {/* The Outlet renders the nested routes like Home or Create */}
       <div>
-        <Outlet />
+        {/* Render children components here */}
       </div>
     </Sidebar>
   );
