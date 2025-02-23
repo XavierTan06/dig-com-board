@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
-import { incrementLike } from '../actions';
+import { incrementLike } from '../app/actions';
 import exp from "constants";
 
 interface CommentProps {

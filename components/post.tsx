@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaThumbsUp, FaHeart } from 'react-icons/fa';
-import { incrementLike } from '../actions';
+import { incrementLike } from '../app/actions';
 
 interface PostProps {
     title: string;
