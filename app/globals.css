@@ -42,5 +42,5 @@ button:hover {
 
 form {
   position: relative;
-  z-index: 10; /* Ensure the form is above other elements */
+  z-index: 50; /* Ensure the form is above other elements */
 }
