@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
                 <FiMenu />
             </div>
             <div className="header__title text-center flex-grow">
-                <h1>Title Name</h1>
+                <h1>Community Board</h1>
             </div>
             <div className="header__icon">
                 <IoSearchOutline />
