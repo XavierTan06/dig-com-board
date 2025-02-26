@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaThumbsUp, FaHeart } from 'react-icons/fa';
+import { FaThumbsUp, FaComment } from 'react-icons/fa';
 import { incrementLike } from '../app/actions';
 
 interface PostProps {
@@ -48,7 +48,7 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
                     {likes}
                 </div>
                 <div className="flex items-center text-blue-500">
-                    <FaHeart className="mr-2" /> {reply_count}
+                    <FaComment className="mr-2" /> {reply_count}
                 </div>
             </div>
             <small className="text-blue-400 mt-2 block md:mt-4 lg:mt-6">{date}</small>
