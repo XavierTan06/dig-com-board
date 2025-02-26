@@ -26,7 +26,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="pb-10">
         <SideMenu />
+        </div>
         {children}
       </body>
     </html>

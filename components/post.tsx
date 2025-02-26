@@ -15,7 +15,8 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
     const [likes, setLikes] = useState(like_count);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-    const handleLikeClick = async () => {
+    const handleLikeClick = async (event: React.MouseEvent) => {
+        event.stopPropagation(); // Stop the click event from propagating to the parent
         if (isButtonDisabled) return;
         setLikes(likes + 1);
         setIsButtonDisabled(true);
@@ -26,14 +27,22 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
         }, 10000);
     };
 
+    const handleClick = (id: string) => {
+        window.location.href = `/post/${id}`;
+        alert('Redirecting to post page...');
+    }
+
     return (
-        <div className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 md:p-6 lg:p-8">
+        <div 
+            className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 md:p-6 lg:p-8 cursor-pointer z-40" 
+            onClick={() => handleClick(id)}
+        >
             <h2 className="text-blue-600 text-xl font-semibold md:text-2xl lg:text-3xl">{title}</h2>
             <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6">{text}</p>
             <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
                 <div className="flex items-center text-blue-500 mr-6">
                     <FaThumbsUp 
-                        className={`mr-2 cursor-pointer ${isButtonDisabled ? 'opacity-50' : ''} z-10`} 
+                        className={`mr-2 cursor-pointer ${isButtonDisabled ? 'opacity-50' : ''} z-50`} 
                         onClick={handleLikeClick} 
                     /> 
                     {likes}
