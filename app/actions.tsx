@@ -13,6 +13,7 @@ export async function create(formData: FormData) {
     'INSERT INTO test_post (post_id, post_title, post_text, like_count, reply_count, post_date) VALUES ($1, $2, $3, $4, $5, $6)',
     [postId, postTitle, postText, 0, 0, postDate]
   );
+  return postId;
 }
 
 export async function reply(formData: FormData, parentPost: string) {
