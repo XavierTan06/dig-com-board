@@ -5,7 +5,10 @@ import Post from "../../../components/post";
 import Comment from "../../../components/comment";
 import { getPosts, getReplies, reply } from "../../actions";
 import { useParams } from 'next/navigation'
-import QuillForm from '@/components/quillform';
+import dynamic from "next/dynamic";
+
+// Dynamically import QuillForm with ssr: false to disable SSR for this component
+const QuillForm = dynamic(() => import('@/components/quillform'), { ssr: false });
 
 // Define a type for your route parameters
 type RouteParams = {
