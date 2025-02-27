@@ -53,6 +53,16 @@ export default function PostThreadPage() {
         return;
       }
       e.preventDefault();
+
+    // Optimistically add the new reply to the list of replies
+    const newReply = {
+        reply_text: myReply,
+        reply_likes: 0,
+        reply_date: new Date().toISOString(),
+        parent_post: id,
+      };
+      setReplies([newReply, ...replies]); // Immediately add to the UI
+      
       const formData = new FormData();
       formData.append('reply_text', myReply);
       if (id) {
@@ -60,6 +70,7 @@ export default function PostThreadPage() {
       } else {
           console.error("Post ID is undefined");
       }
+      setMyReply('');
   };
 
   return (
