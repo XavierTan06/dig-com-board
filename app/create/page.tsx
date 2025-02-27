@@ -1,19 +1,17 @@
-"use client";
 import React, { useState } from 'react';
-import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css';
 import { create } from '../actions';
+import QuillForm from '@/components/quillform';
 
 export default function Create() {
   const [postTitle, setPostTitle] = useState('');
   const [postText, setPostText] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if (!postText){
+    e.preventDefault();
+    if (!postText.trim()) {
       alert('Please fill in all fields!');
       return;
     }
-    e.preventDefault();
     const formData = new FormData();
     formData.append('post_title', postTitle);
     formData.append('post_text', postText);
@@ -21,23 +19,6 @@ export default function Create() {
     setPostTitle('');
     setPostText('');
   };
-
-  const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
-      ['clean']
-    ]
-  };
-
-  const formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
-  ];
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -56,14 +37,7 @@ export default function Create() {
         </div>
         <div>
           <label htmlFor="post_text">Text:</label>
-          <ReactQuill
-            theme="snow"
-            value={postText}
-            onChange={setPostText}
-            modules={modules}
-            formats={formats}
-            placeholder='Write your post content here'
-          />
+          <QuillForm value={postText} onChange={setPostText} />
         </div>
         <button type="submit">Submit</button>
       </form>

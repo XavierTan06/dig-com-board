@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 
-export default function QuillForm() {
-  const [value, setValue] = useState('');
-    const modules = {
+interface QuillFormProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const QuillForm: React.FC<QuillFormProps> = ({ value, onChange }) => {
+  const modules = {
     toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
       ['link', 'image'],
       ['clean']
-    ],
+    ]
   };
 
   const formats = [
@@ -21,5 +24,16 @@ export default function QuillForm() {
     'link', 'image'
   ];
 
-  return <ReactQuill theme="snow" modules={modules} formats={formats} value={value} onChange={setValue} />;
-}
+  return (
+    <ReactQuill
+      theme="snow"
+      value={value}
+      onChange={onChange}
+      modules={modules}
+      formats={formats}
+      placeholder="Write your content here"
+    />
+  );
+};
+
+export default QuillForm;
