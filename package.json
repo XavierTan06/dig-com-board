@@ -12,6 +12,7 @@
     "@neondatabase/serverless": "^0.10.4",
     "@types/react-sidebar": "^3.0.4",
     "@vercel/react-router": "^1.0.2",
+    "dompurify": "^3.2.4",
     "next": "^15.1.6",
     "pg": "^8.13.1",
     "react": "^19.0.0",
