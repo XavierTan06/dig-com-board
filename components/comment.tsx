@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { incrementLike } from '../app/actions';
-import exp from "constants";
+import DOMPurify from 'dompurify';
 
 interface CommentProps {
   text: string;
@@ -25,9 +25,11 @@ function Comment({ text, like_count, date, id }: CommentProps) {
         }, 10000);
     };    
 
+    const sanitizedText = DOMPurify.sanitize(text);
+
         return (
             <div className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 md:p-6 lg:p-8">
-                <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6">{text}</p>
+                <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6" dangerouslySetInnerHTML={{ __html: sanitizedText }} />
                 <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
                     <div className="flex items-center text-blue-500 mr-6">
                         <FaThumbsUp 
