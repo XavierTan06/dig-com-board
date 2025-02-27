@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaThumbsUp, FaComment } from 'react-icons/fa';
 import { incrementLike } from '../app/actions';
+import DOMPurify from 'dompurify';
 
 interface PostProps {
     title: string;
@@ -27,10 +28,8 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
         }, 10000);
     };
 
-    const handleClick = (id: string) => {
-        window.location.href = `/post/${id}`;
-        alert('Redirecting to post page...');
-    }
+    // Sanitize the HTML text content before rendering
+    const sanitizedText = DOMPurify.sanitize(text);
 
     return (
         <div 
@@ -38,7 +37,10 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
             onClick={() => handleClick(id)}
         >
             <h2 className="text-blue-600 text-xl font-semibold md:text-2xl lg:text-3xl">{title}</h2>
-            <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6">{text}</p>
+            <p
+                className="text-blue-500 mt-2 md:mt-4 lg:mt-6"
+                dangerouslySetInnerHTML={{ __html: sanitizedText }}
+            />
             <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
                 <div className="flex items-center text-blue-500 mr-6">
                     <FaThumbsUp 

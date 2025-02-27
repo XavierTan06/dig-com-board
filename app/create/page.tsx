@@ -1,6 +1,6 @@
-"use client";
 import React, { useState } from 'react';
 import { create } from '../actions';
+import QuillForm from '@/components/quillform';
 
 export default function Create() {
   const [postTitle, setPostTitle] = useState('');
@@ -8,6 +8,10 @@ export default function Create() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!postText.trim()) {
+      alert('Please fill in all fields!');
+      return;
+    }
     const formData = new FormData();
     formData.append('post_title', postTitle);
     formData.append('post_text', postText);
@@ -33,13 +37,7 @@ export default function Create() {
         </div>
         <div>
           <label htmlFor="post_text">Text:</label>
-          <textarea
-            id="post_text"
-            name="post_text"
-            value={postText}
-            onChange={(e) => setPostText(e.target.value)}
-            required
-          />
+          <QuillForm value={postText} onChange={setPostText} />
         </div>
         <button type="submit">Submit</button>
       </form>

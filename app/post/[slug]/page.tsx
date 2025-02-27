@@ -5,6 +5,7 @@ import Post from "../../../components/post";
 import Comment from "../../../components/comment";
 import { getPosts, getReplies, reply } from "../../actions";
 import { useParams } from 'next/navigation'
+import QuillForm from '@/components/quillform';
 
 // Define a type for your route parameters
 type RouteParams = {
@@ -44,6 +45,10 @@ export default function PostThreadPage() {
   }, [id]);
 
   const handleReply = async (e: React.FormEvent) => {
+    if (!myReply.trim()) {
+        alert('Your comment cannot be empty!');
+        return;
+      }
       e.preventDefault();
       const formData = new FormData();
       formData.append('reply_text', myReply);
@@ -69,16 +74,10 @@ export default function PostThreadPage() {
           ))}
           <form onSubmit={handleReply}>
               <div>
-                  <label htmlFor="reply_text">Text:</label>
-                  <textarea
-                      id="reply_text"
-                      name="reply_text"
-                      value={myReply}
-                      onChange={(e) => setMyReply(e.target.value)}
-                      required
-                  />
-              </div>
+              <label htmlFor="your_reply">Comment:</label>
+              <QuillForm value={myReply} onChange={setMyReply} />
               <button type="submit">Submit</button>
+              </div>
           </form>
           {replies.map((reply, index) => (
               <Comment
