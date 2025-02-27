@@ -1,24 +1,27 @@
 "use client";
-import React, { useState } from 'react';
-import { create } from '../actions';
-import QuillForm from '@/components/quillform';
+import React, { useState } from "react";
+import { create } from "../actions";
+import dynamic from "next/dynamic";
+
+// Dynamically import QuillForm with ssr: false to disable SSR for this component
+const QuillForm = dynamic(() => import('@/components/quillform'), { ssr: false });
 
 export default function Create() {
-  const [postTitle, setPostTitle] = useState('');
-  const [postText, setPostText] = useState('');
+  const [postTitle, setPostTitle] = useState("");
+  const [postText, setPostText] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!postText.trim()) {
-      alert('Please fill in all fields!');
+      alert("Please fill in all fields!");
       return;
     }
     const formData = new FormData();
-    formData.append('post_title', postTitle);
-    formData.append('post_text', postText);
+    formData.append("post_title", postTitle);
+    formData.append("post_text", postText);
     await create(formData);
-    setPostTitle('');
-    setPostText('');
+    setPostTitle("");
+    setPostText("");
   };
 
   return (
@@ -36,6 +39,7 @@ export default function Create() {
             required
           />
         </div>
+        {/* Render QuillForm, but it will now only render on the client */}
         <div>
           <label htmlFor="post_text">Text:</label>
           <QuillForm value={postText} onChange={setPostText} />
