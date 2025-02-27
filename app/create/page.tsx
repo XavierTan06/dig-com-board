@@ -19,9 +19,10 @@ export default function Create() {
     const formData = new FormData();
     formData.append("post_title", postTitle);
     formData.append("post_text", postText);
-    await create(formData);
+    const postID = await create(formData);
     setPostTitle("");
     setPostText("");
+    window.location.href = `/post/${postID}`;
   };
 
   return (
