@@ -15,6 +15,7 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date, id }) => {
     const [likes, setLikes] = useState(like_count);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const isDisabledOnPage = window.location.pathname === `/post/${id}`; // Adjust the URL check here
 
     const handleLikeClick = async (event: React.MouseEvent) => {
         event.stopPropagation(); // Stop the click event from propagating to the parent
@@ -28,6 +29,12 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
         }, 10000);
     };
 
+    const handleClick = (id: string) => {
+        if (isDisabledOnPage) return;
+        window.location.href = `/post/${id}`;
+        alert('Redirecting to post page...');
+    }
+
     // Sanitize the HTML text content before rendering
     const sanitizedText = DOMPurify.sanitize(text);
 
@@ -35,6 +42,9 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
         <div 
             className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 md:p-6 lg:p-8 cursor-pointer z-40" 
             onClick={() => handleClick(id)}
+            style={{
+                cursor: isDisabledOnPage ? 'default' : 'pointer', // Change cursor based on condition
+              }}
         >
             <h2 className="text-blue-600 text-xl font-semibold md:text-2xl lg:text-3xl">{title}</h2>
             <p
