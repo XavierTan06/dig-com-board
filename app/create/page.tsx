@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { create } from '../actions';
 import QuillForm from '@/components/quillform';
