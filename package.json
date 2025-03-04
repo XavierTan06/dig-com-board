@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
+    "@types/react-big-calendar": "^1.16.1",
     "@types/react-sidebar": "^3.0.4",
     "@vercel/react-router": "^1.0.2",
     "dompurify": "^3.2.4",
