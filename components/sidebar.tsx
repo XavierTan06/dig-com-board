@@ -22,6 +22,9 @@ const SideMenu: React.FC = () => {
             <li>
               <Link href="/">Home</Link>
             </li>
+            <li>
+              <Link href="/calendar">Calendar</Link>
+            </li>
           </ul>
         </div>
       }
