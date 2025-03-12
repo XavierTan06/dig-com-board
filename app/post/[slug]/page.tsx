@@ -18,23 +18,23 @@ type RouteParams = {
 
 export default function PostThreadPage() {
   // Using useParams hook to access route parameters synchronously
-  const id = useParams<RouteParams>().slug;
+  const postID = useParams<RouteParams>().slug;
   const [post, setPost] = useState<Record<string, any>[]>([]);
   const [replies, setReplies] = useState<Record<string, any>[]>([]);
   const [myReply, setMyReply] = useState('');
 
   useEffect(() => {
-      if (!id) return;
+      if (!postID) return;
 
       const fetchPosts = async () => {
-          const mainPost = await getPosts(id);
+          const mainPost = await getPosts(postID);
           setPost(mainPost);
           console.log(mainPost);
       };
 
       const fetchReplies = async () => {
-          if (id) {
-              const replies = await getReplies(id);
+          if (postID) {
+              const replies = await getReplies(postID);
               const sortedReplies = replies.sort((a, b) => new Date(b.reply_date).getTime() - new Date(a.reply_date).getTime());
               setReplies(sortedReplies);
               console.log(replies);
@@ -45,7 +45,7 @@ export default function PostThreadPage() {
 
       fetchPosts();
       fetchReplies();
-  }, [id]);
+  }, [postID]);
 
   const handleReply = async (e: React.FormEvent) => {
     if (!myReply.trim()) {
@@ -59,14 +59,14 @@ export default function PostThreadPage() {
         reply_text: myReply,
         reply_likes: 0,
         reply_date: new Date().toISOString(),
-        parent_post: id,
+        parent_post: postID,
       };
       setReplies([newReply, ...replies]); // Immediately add to the UI
       
       const formData = new FormData();
       formData.append('reply_text', myReply);
-      if (id) {
-          await reply(formData, id);
+      if (postID) {
+          await reply(formData, postID);
       } else {
           console.error("Post ID is undefined");
       }
@@ -99,7 +99,7 @@ export default function PostThreadPage() {
                   text={reply.reply_text}
                   like_count={reply.reply_likes}
                   date={new Date(reply.reply_date).toLocaleString()}
-                  id={reply.parent_post} />
+                  reply_id={reply.reply_id} />
           ))}
       </div>
     </div>

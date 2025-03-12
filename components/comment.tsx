@@ -7,10 +7,10 @@ interface CommentProps {
   text: string;
   like_count: number;
   date: string;
-  id: string;
+  reply_id: string;
 }
 
-function Comment({ text, like_count, date, id }: CommentProps) {
+function Comment({ text, like_count, date, reply_id }: CommentProps) {
     const [likes, setLikes] = useState(like_count);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -18,8 +18,8 @@ function Comment({ text, like_count, date, id }: CommentProps) {
         if (isButtonDisabled) return;
         setLikes(likes + 1);
         setIsButtonDisabled(true);
-        await incrementLike(id, true);
-        alert('Liked!');
+        await incrementLike(reply_id, true);
+        alert('Liked! ' + reply_id);
         setTimeout(() => {
             setIsButtonDisabled(false);
         }, 10000);

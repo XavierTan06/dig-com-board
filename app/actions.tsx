@@ -18,11 +18,12 @@ export async function create(formData: FormData) {
 
 export async function reply(formData: FormData, parentPost: string) {
   const sql = neon(`${process.env.DATABASE_URL}`);
+  const replyId = uuidv4();
   const replyText = formData.get('reply_text');
   const replyDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })); // GMT+8
   await sql(
-    'INSERT INTO test_reply (reply_text, reply_likes, reply_date, parent_post) VALUES ($1, $2, $3, $4)',
-    [replyText, 0, replyDate, parentPost]
+    'INSERT INTO test_reply (reply_text, reply_likes, reply_date, parent_post, reply_id) VALUES ($1, $2, $3, $4, $5)',
+    [replyText, 0, replyDate, parentPost, replyId]
   );
 }
 
@@ -39,23 +40,23 @@ export async function getPosts(id: null | string = null) {
 
 export async function getReplies(id: string) {
   const sql = neon(`${process.env.DATABASE_URL}`);
-  const result = await sql('SELECT reply_text, reply_likes, reply_date FROM test_reply WHERE parent_post = $1', [id]);
+  const result = await sql('SELECT reply_text, reply_likes, reply_date, reply_id FROM test_reply WHERE parent_post = $1', [id]);
   console.log(result);
   return result;
 }
 
-export async function incrementLike(postId: string, isReply = false) {
+export async function incrementLike(id: string, isReply = false) {
   const sql = neon(`${process.env.DATABASE_URL}`);
+
   if (isReply) {
     await sql(
-      'UPDATE test_reply SET reply_likes = reply_likes + 1 WHERE parent_post = $1',
-      [postId]
+      'UPDATE test_reply SET reply_likes = reply_likes + 1 WHERE reply_id = $1',
+      [id]
     );
-  }
-  else {
+  } else {
     await sql(
       'UPDATE test_post SET like_count = like_count + 1 WHERE post_id = $1',
-      [postId]
+      [id]
     );
   }
 }
