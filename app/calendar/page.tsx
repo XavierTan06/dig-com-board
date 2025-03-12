@@ -1,17 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer, SlotInfo, Event as BigCalendarEvent } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { addEvent, getEvents } from '@/app/actions'; // Import server-side functions
 
 const localizer = momentLocalizer(moment);
 
 interface Event {
-  id: number;
   title: string;
   description: string;
   start: Date;
@@ -26,22 +26,51 @@ const MyCalendar = () => {
   const [eventDescription, setEventDescription] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const result = await getEvents();
+      console.log(result);
+      const fetchedEvents = result.map((event: any) => ({
+        title: event.title,
+        description: event.description,
+        start: new Date(`${event.event_date}T${event.start_time}`), // Convert to full Date object
+        end: new Date(`${event.event_date}T${event.end_time}`),
+        participant_count: event.pax,
+      }));
+  
+      setEvents(fetchedEvents);
+    };
+  
+    fetchEvents();
+  }, []);
+  
+
   const handleSelectSlot = (slotInfo: SlotInfo) => {
     setSelectedDate(slotInfo.start);
     setIsModalOpen(true);
   };
 
-  const handleAddEvent = () => {
+  const handleAddEvent = async () => {
     if (eventTitle.trim() && selectedDate) {
       const newEvent: Event = {
-        id: events.length + 1,
         title: eventTitle,
         description: eventDescription,
         start: selectedDate,
         end: moment(selectedDate).add(1, 'hour').toDate(),
         participant_count: 1,
       };
+      await addEvent(
+        moment(selectedDate).format('YYYY-MM-DD'),
+        moment(selectedDate).format('HH:mm:ss'),
+        moment(selectedDate).add(1, 'hour').format('HH:mm:ss'),
+        eventTitle,
+        eventDescription,
+        1
+      );
+      console.log(newEvent);
+      console.log(events);
       setEvents([...events, newEvent]);
+      console.log(events);
       setIsModalOpen(false);
       setEventTitle('');
       setEventDescription('');
