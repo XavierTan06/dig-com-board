@@ -7,11 +7,11 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { addEvent, getEvents } from '@/app/actions'; // Import server-side functions
+import { getEvents, makeEvent } from '@/app/actions'; // Import server-side functions
 
 const localizer = momentLocalizer(moment);
 
-interface Event {
+export interface Event {
   title: string;
   description: string;
   start: Date;
@@ -29,7 +29,6 @@ const MyCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       const result = await getEvents();
-      console.log(result);
       const fetchedEvents = result.map((event: any) => ({
         title: event.title,
         description: event.description,
@@ -59,18 +58,8 @@ const MyCalendar = () => {
         end: moment(selectedDate).add(1, 'hour').toDate(),
         participant_count: 1,
       };
-      await addEvent(
-        moment(selectedDate).format('YYYY-MM-DD'),
-        moment(selectedDate).format('HH:mm:ss'),
-        moment(selectedDate).add(1, 'hour').format('HH:mm:ss'),
-        eventTitle,
-        eventDescription,
-        1
-      );
-      console.log(newEvent);
-      console.log(events);
+      await makeEvent(newEvent);
       setEvents([...events, newEvent]);
-      console.log(events);
       setIsModalOpen(false);
       setEventTitle('');
       setEventDescription('');

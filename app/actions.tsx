@@ -2,6 +2,7 @@
 
 import { neon } from '@neondatabase/serverless';
 import { v4 as uuidv4 } from 'uuid';
+import { Event } from '@/app/calendar/page';
 
 export async function create(formData: FormData) {
   const sql = neon(`${process.env.DATABASE_URL}`);
@@ -60,15 +61,15 @@ export async function incrementLike(postId: string, isReply = false) {
   }
 }
 
-export async function addEvent(
-  start_time: Date, 
-  end_time: Date,   
-  title: string,
-  description: string,
-  pax: number
-) {
+export async function makeEvent(event: Event)
+ {
   const sql = neon(`${process.env.DATABASE_URL}`);
   const eventID = uuidv4();
+  const start_time = event.start;
+  const end_time = event.end;
+  const title = event.title;
+  const description = event.description;
+  const pax = event.participant_count;
   const result = await sql(
     `INSERT INTO events (start_time, end_time, title, description, pax, event_id)
      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
