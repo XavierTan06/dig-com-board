@@ -60,17 +60,31 @@ export async function incrementLike(postId: string, isReply = false) {
   }
 }
 
-export async function addEvent(date: string, time: string, title: string, description: string, pax: number, end_time: string) {
+export async function addEvent(
+  event_date: string, // Format: YYYY-MM-DD
+  start_time: string, // Format: HH:MM:SS
+  end_time: string,   // Format: HH:MM:SS
+  title: string,
+  description: string,
+  pax: number
+) {
   const sql = neon(`${process.env.DATABASE_URL}`);
-  const eventId = uuidv4();
-  const result = await sql('INSERT INTO events (date, time, title, description, pax, event_id, end_time) VALUES ($1, $2, $3, $4, $5, $6, $7)', [date, time, title, description, pax, eventId, end_time]);
-  console.log(result);
+  const eventID = uuidv4();
+  const result = await sql(
+    `INSERT INTO events (event_date, start_time, end_time, title, description, pax, event_id)
+     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+    [event_date, start_time, end_time, title, description, pax, eventID]
+  );
   return result;
 }
 
 export async function getEvents() {
   const sql = neon(`${process.env.DATABASE_URL}`);
-  const result = await sql('SELECT date, time, end_time, title, description, pax FROM events');
+
+  const result = await sql(
+    `SELECT event_id, event_date, start_time, end_time, title, description, pax FROM events`
+  );
   console.log(result);
+  // Convert database format to React Big Calendar compatible format
   return result;
 }
