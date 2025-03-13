@@ -2,6 +2,7 @@
 
 import { neon } from '@neondatabase/serverless';
 import { v4 as uuidv4 } from 'uuid';
+import { Event } from '@/app/calendar/page';
 
 export async function create(formData: FormData) {
   const sql = neon(`${process.env.DATABASE_URL}`);
@@ -59,4 +60,41 @@ export async function incrementLike(id: string, isReply = false) {
       [id]
     );
   }
+}
+
+export async function makeEvent(event: Event)
+ {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+  const eventID = uuidv4();
+  const start_time = event.start;
+  const end_time = event.end;
+  const title = event.title;
+  const description = event.description;
+  const pax = event.participant_count;
+  const result = await sql(
+    `INSERT INTO events (start_time, end_time, title, description, pax, event_id)
+     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+    [start_time, end_time, title, description, pax, eventID]
+  );
+  return result;
+}
+
+export async function getEvents() {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+
+  const result = await sql(
+    `SELECT start_time, end_time, title, description, pax, event_id FROM events`
+  );
+  console.log(result);
+  // Convert database format to React Big Calendar compatible format
+  return result;
+}
+
+export async function rsvpEvent(event: Event) {
+  const sql = neon(`${process.env.DATABASE_URL}`);
+  const eventID = event.event_id;
+  await sql(
+    'UPDATE events SET pax = pax + 1 WHERE event_id = $1',
+    [eventID]
+  );
 }
