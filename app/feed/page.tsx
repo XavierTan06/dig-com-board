@@ -43,7 +43,8 @@ function HomePage() {
                   like_count={post.like_count}
                   reply_count={post.reply_count}
                   date={new Date(post.post_date).toLocaleString()}
-                  id={post.post_id} />
+                  id={post.post_id}
+                  author={post.author} />
           ))}
       </div><main className="flex flex-col gap-8 items-center sm:items-start mt-8">
               <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">

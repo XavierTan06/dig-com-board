@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { create } from "../actions";
 import dynamic from "next/dynamic";
+import { NicknameContext } from "@/context/context";
+import { useContext } from "react";
 
 // Dynamically import QuillForm with ssr: false to disable SSR for this component
 const QuillForm = dynamic(() => import('@/components/quillform'), { ssr: false });
@@ -9,6 +11,7 @@ const QuillForm = dynamic(() => import('@/components/quillform'), { ssr: false }
 export default function Create() {
   const [postTitle, setPostTitle] = useState("");
   const [postText, setPostText] = useState("");
+  const nicknameContext = useContext(NicknameContext);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ export default function Create() {
     const formData = new FormData();
     formData.append("post_title", postTitle);
     formData.append("post_text", postText);
-    const postID = await create(formData);
+    const postID = await create(formData, nicknameContext?.nickname || "Anonymous");
     setPostTitle("");
     setPostText("");
     window.location.href = `/post/${postID}`;
