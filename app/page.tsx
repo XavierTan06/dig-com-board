@@ -1,25 +1,72 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useContext, useState } from "react";
+import { NicknameContext } from "@/context/context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import NicknameInput from "@/components/nickname";
 
 function LandingPage() {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
-        {/* Header */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">Project Title</h1>
-  
-        {/* Subheader */}
-        <p className="text-lg text-gray-600 mb-6">A short description of the project.</p>
-  
-        {/* Image Container */}
-        <div className="grid grid-cols-2 sm:grid-cols-1 gap-4">
-          <img src="/placeholder1.jpg" alt="Image 1" className="w-32 h-32 object-cover rounded-lg shadow-md" />
-          <img src="/placeholder2.jpg" alt="Image 2" className="w-32 h-32 object-cover rounded-lg shadow-md" />
-          <img src="/placeholder3.jpg" alt="Image 3" className="w-32 h-32 object-cover rounded-lg shadow-md" />
-        </div>
-      </div>
-    );
+  const nicknameContext = useContext(NicknameContext);
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState("");
+
+  if (!nicknameContext) {
+    throw new Error("LandingPage must be used within a NicknameProvider");
   }
+
+  const { nickname, setNickname } = nicknameContext;
+
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      setNickname(inputValue);
+      setInputValue("");
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
+      {/* Header */}
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Project Title</h1>
+
+      {/* Subheader */}
+      <p className="text-lg text-gray-600 mb-6">A short description of the project.</p>
+
+      {/* Image Container */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+        <img src="/placeholder1.jpg" alt="Image 1" className="w-32 h-32 object-cover rounded-lg shadow-md" />
+        <img src="/placeholder2.jpg" alt="Image 2" className="w-32 h-32 object-cover rounded-lg shadow-md" />
+        <img src="/placeholder3.jpg" alt="Image 3" className="w-32 h-32 object-cover rounded-lg shadow-md" />
+      </div>
+
+      <NicknameInput />
+
+      {/* Navigation Buttons */}
+      <div className="flex gap-4">
+        <button
+          onClick={() => router.push("/calendar")}
+          className="p-2 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition"
+        >
+          Go to Calendar
+        </button>
+        <button
+          onClick={() => router.push("/dashboard")}
+          className="p-2 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition"
+        >
+          Go to Dashboard
+        </button>
+        <button
+          onClick={() => router.push("/about")}
+          className="p-2 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition"
+        >
+          About the Project
+        </button>
+      </div>
+    </div>
+  );
+}
+
   
 export default function App() {
   const [isClient, setIsClient] = useState(false); // State to check if the component is rendered on the client
