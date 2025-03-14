@@ -3,7 +3,7 @@ import { NicknameContext } from "../context/context";
 
 export default function NicknameInput() {
   const nicknameContext = useContext(NicknameContext);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("Anonymous");
 
   if (!nicknameContext) {
     throw new Error("NicknameInput must be used within a NicknameProvider");
