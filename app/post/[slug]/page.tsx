@@ -63,6 +63,7 @@ export default function PostThreadPage() {
         reply_likes: 0,
         reply_date: new Date().toISOString(),
         parent_post: postID,
+        author: nicknameContext?.nickname || "Anonymous"
       };
       setReplies([newReply, ...replies]); // Immediately add to the UI
       
