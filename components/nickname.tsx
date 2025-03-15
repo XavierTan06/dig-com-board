@@ -1,15 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { NicknameContext } from "../context/context";
 
 export default function NicknameInput() {
   const nicknameContext = useContext(NicknameContext);
-  const [inputValue, setInputValue] = useState("Anonymous");
+  const [inputValue, setInputValue] = useState("");
 
   if (!nicknameContext) {
     throw new Error("NicknameInput must be used within a NicknameProvider");
   }
 
   const { nickname, setNickname } = nicknameContext;
+
+  useEffect(() => {
+    if (!nickname) {
+      setNickname("Anonymous");
+    }
+  }, [nickname, setNickname]);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
