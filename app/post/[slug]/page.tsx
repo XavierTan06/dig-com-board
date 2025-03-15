@@ -84,7 +84,8 @@ export default function PostThreadPage() {
                   like_count={post.like_count}
                   reply_count={post.reply_count}
                   date={new Date(post.post_date).toLocaleString()}
-                  id={post.post_id} />
+                  id={post.post_id}
+                  author={post.author} />
           ))}
           <form onSubmit={handleReply}>
               <div>
@@ -99,7 +100,8 @@ export default function PostThreadPage() {
                   text={reply.reply_text}
                   like_count={reply.reply_likes}
                   date={new Date(reply.reply_date).toLocaleString()}
-                  reply_id={reply.reply_id} />
+                  reply_id={reply.reply_id}
+                  author={reply.author} />
           ))}
       </div>
     </div>
