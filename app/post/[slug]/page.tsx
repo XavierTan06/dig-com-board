@@ -6,6 +6,8 @@ import Comment from "../../../components/comment";
 import { getPosts, getReplies, reply } from "../../actions";
 import { useParams } from 'next/navigation'
 import dynamic from "next/dynamic";
+import { NicknameContext } from "@/context/context";
+import { useContext } from "react";
 
 // Dynamically import QuillForm with ssr: false to disable SSR for this component
 const QuillForm = dynamic(() => import('@/components/quillform'), { ssr: false });
@@ -22,6 +24,7 @@ export default function PostThreadPage() {
   const [post, setPost] = useState<Record<string, any>[]>([]);
   const [replies, setReplies] = useState<Record<string, any>[]>([]);
   const [myReply, setMyReply] = useState('');
+  const nicknameContext = useContext(NicknameContext);
 
   useEffect(() => {
       if (!postID) return;
@@ -66,7 +69,7 @@ export default function PostThreadPage() {
       const formData = new FormData();
       formData.append('reply_text', myReply);
       if (postID) {
-          await reply(formData, postID);
+          await reply(formData, postID, nicknameContext?.nickname || "Anonymous");
       } else {
           console.error("Post ID is undefined");
       }
