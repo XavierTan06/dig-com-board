@@ -27,6 +27,28 @@ form {
   z-index: 50; /* Ensure the form is above other elements */
 }
 
+.rbc-header {
+  background-color: #df8f28 !important; /* Change to your desired color */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.rbc-event-content {
+  background-color: #df8f28;
+}
+
+.rbc-event {
+  background-color: #df8f28 !important; /* Background color */
+  color: white !important; /* Text color */
+  border-radius: 5px !important; /* Rounded corners */
+  padding: 5px !important; /* Padding inside event box */
+  font-size: 14px !important; /* Text size */
+  text-align: center !important; /* Center text */
+  border: none !important; /* Remove border */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important; /* Add shadow */
+}
 
 
 @layer base {

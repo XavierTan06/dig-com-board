@@ -87,11 +87,11 @@ const MyCalendar = () => {
 
   const eventPropGetter = (event: BigCalendarEvent) => {
     return {
-      style: {
-        backgroundColor: '#3174ad',
-        color: 'white',
-        borderRadius: '0px',
-        border: 'none',
+      style: { //for agenda, event cells are overwritten by rbc-event in globals.css
+        backgroundColor: '#f0f0f0',
+        color: 'black',
+        borderRadius: 'px',
+        border: '1px black solid',
       },
     };
   };
