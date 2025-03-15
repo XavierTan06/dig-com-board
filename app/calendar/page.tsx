@@ -47,8 +47,8 @@ const MyCalendar = () => {
     fetchEvents();
   }, []);
   
-
   const handleSelectSlot = (slotInfo: SlotInfo) => {
+    setSelectedEvent(null); // Reset selectedEvent when selecting a new slot
     setSelectedDate(slotInfo.start);
     setIsModalOpen(true);
   };
@@ -114,7 +114,7 @@ const MyCalendar = () => {
           endAccessor="end"
           selectable
           onSelectSlot={handleSelectSlot}
-          onSelectEvent={handleSelectEvent} // Add this line to handle event selection
+          onSelectEvent={handleSelectEvent}
           style={{ height: 500, zIndex: 50 }}
           eventPropGetter={eventPropGetter}
           components={{
