@@ -50,6 +50,11 @@ form {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important; /* Add shadow */
 }
 
+.rbc-button-link.rbc-show-more {
+  color: #df8f28;
+  font-weight: bold;
+}
+
 
 @layer base {
   :root {
