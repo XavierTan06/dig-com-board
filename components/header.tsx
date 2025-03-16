@@ -11,12 +11,12 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     const nickname = "Browsing as: " + (nicknameContext?.nickname ?? "Anonymous");
 
     return (
-        <header className="w-full flex items-center justify-between p-4 bg-[#df8f28] position: fixed">
-            <div className="header__icon" onClick={toggleSidebar}>
-            <FiMenu />
+        <header className="w-full grid grid-cols-3 items-center p-4 bg-[#df8f28] fixed">
+            <div className="justify-self-start cursor-pointer" onClick={toggleSidebar}>
+                <FiMenu />
             </div>
-            <h1>Community Board</h1>
-            {nickname}
+            <h1 className="justify-self-center">Community Board</h1>
+            <span className="justify-self-end">{nickname}</span>
         </header>
     );
 };
