@@ -37,9 +37,6 @@ const SideMenu: React.FC = () => {
     >
       <Header toggleSidebar={() => onSetSidebarOpen(!sidebarOpen)} />
       {/* The Outlet renders the nested routes like Home or Create */}
-      <div>
-        {/* Render children components here */}
-      </div>
     </Sidebar>
   );
 };
