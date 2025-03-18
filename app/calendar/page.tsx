@@ -105,8 +105,8 @@ const MyCalendar = () => {
   );
 
   return (
-    <div className="w-full max-w-4xl">
-      <div className="flex justify-between items-center mb-4 relative z-0" >
+    <div className="">
+      <div className="flex relative z-0" >
         <Calendar
           localizer={localizer}
           events={events}
