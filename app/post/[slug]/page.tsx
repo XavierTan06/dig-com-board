@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from "react";
 import Post from "../../../components/post";
@@ -27,9 +27,13 @@ export default function PostThreadPage() {
   const [myReply, setMyReply] = useState('');
   const nicknameContext = useContext(NicknameContext);
   const [showModal, setShowModal] = useState(false);
-  const [nickname, setNickname] = useState(nicknameContext?.nickname || "test");
-  console.log(nicknameContext);
-  console.log(nickname); //why is this not working?
+  const [nickname, setNickname] = useState(nicknameContext?.nickname || "");
+
+  useEffect(() => {
+    if (nicknameContext?.nickname && nickname === "") {
+      setNickname(nicknameContext.nickname);
+    }
+  }, [nicknameContext?.nickname]); // Sync nickname from context
   
   useEffect(() => {
       if (!postID) return;
