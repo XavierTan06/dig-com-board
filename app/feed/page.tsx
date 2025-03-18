@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Post from "../../components/post";
 import { getPosts } from '../actions';
-import { useRouter, usePathname } from "next/navigation";
 
 function HomePage() {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
@@ -67,7 +66,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 mt-4">
       <HomePage />
     </div>
   );
