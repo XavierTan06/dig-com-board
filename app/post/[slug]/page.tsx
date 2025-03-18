@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation'
 import dynamic from "next/dynamic";
 import { NicknameContext } from "@/context/context";
 import { useContext } from "react";
+import Modal from "@/components/Modal";
 
 // Dynamically import QuillForm with ssr: false to disable SSR for this component
 const QuillForm = dynamic(() => import('@/components/quillform'), { ssr: false });
@@ -25,7 +26,11 @@ export default function PostThreadPage() {
   const [replies, setReplies] = useState<Record<string, any>[]>([]);
   const [myReply, setMyReply] = useState('');
   const nicknameContext = useContext(NicknameContext);
-
+  const [showModal, setShowModal] = useState(false);
+  const [nickname, setNickname] = useState(nicknameContext?.nickname || "test");
+  console.log(nicknameContext);
+  console.log(nickname); //why is this not working?
+  
   useEffect(() => {
       if (!postID) return;
 
@@ -40,7 +45,6 @@ export default function PostThreadPage() {
               const replies = await getReplies(postID);
               const sortedReplies = replies.sort((a, b) => new Date(b.reply_date).getTime() - new Date(a.reply_date).getTime());
               setReplies(sortedReplies);
-              console.log(replies);
           } else {
               console.error("Post ID is undefined");
           }
@@ -56,6 +60,10 @@ export default function PostThreadPage() {
         return;
       }
       e.preventDefault();
+      if (!nickname.trim()) {
+        setShowModal(true);
+        return;
+      }
 
     // Optimistically add the new reply to the list of replies
     const newReply = {
@@ -63,18 +71,26 @@ export default function PostThreadPage() {
         reply_likes: 0,
         reply_date: new Date().toISOString(),
         parent_post: postID,
-        author: nicknameContext?.nickname || "Anonymous"
+        author: nickname
       };
       setReplies([newReply, ...replies]); // Immediately add to the UI
       
       const formData = new FormData();
       formData.append('reply_text', myReply);
       if (postID) {
-          await reply(formData, postID, nicknameContext?.nickname || "Anonymous");
+          await reply(formData, postID, nickname);
       } else {
           console.error("Post ID is undefined");
       }
       setMyReply('');
+  };
+
+  const handleModalSubmit = () => {
+    setShowModal(false);
+    if (nicknameContext) {
+      nicknameContext.setNickname(nickname);
+    }
+    handleReply(new Event("submit") as unknown as React.FormEvent);
   };
 
   return (
@@ -108,6 +124,19 @@ export default function PostThreadPage() {
                   author={reply.author} />
           ))}
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <h2>Enter your Nickname</h2>
+          <input
+            type="text"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+            placeholder="Anonymous"
+          />
+          <button onClick={handleModalSubmit}>Submit</button>
+          <button onClick={() => setShowModal(false)}>Close</button>
+        </Modal>
+      )}
     </div>
   );
 

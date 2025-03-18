@@ -15,7 +15,8 @@ export default function Create() {
   const nicknameContext = useContext(NicknameContext);
   const [showModal, setShowModal] = useState(false);
   const [nickname, setNickname] = useState(nicknameContext?.nickname || "");
-
+  console.log(nicknameContext);
+  console.log(nickname);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!postText.trim()) {
@@ -34,7 +35,6 @@ export default function Create() {
     setPostTitle("");
     setPostText("");
     window.location.href = `/post/${postID}`;
-    
   };
 
   const handleModalSubmit = () => {

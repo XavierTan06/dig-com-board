@@ -9,6 +9,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     const nicknameContext = useContext(NicknameContext);
     const nickname = "Browsing as: " + (nicknameContext?.nickname ?? "Anonymous");
+    console.log(nickname);
 
     return (
         <header className="w-full grid grid-cols-3 items-center p-4 bg-[#df8f28] fixed top-0 left-0 z-50">
