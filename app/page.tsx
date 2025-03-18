@@ -26,7 +26,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-100 p-8">
+    <div className="flex flex-col items-center bg-gray-100 p-8 z-0">
       {/* Header */}
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Project Title</h1>
 
