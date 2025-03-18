@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     const nickname = "Browsing as: " + (nicknameContext?.nickname ?? "Anonymous");
 
     return (
-        <header className="w-full grid grid-cols-3 items-center p-4 bg-[#df8f28] fixed">
+        <header className="w-full grid grid-cols-3 items-center p-4 bg-[#df8f28] fixed top-0 left-0 z-50">
             <div className="justify-self-start cursor-pointer" onClick={toggleSidebar}>
                 <FiMenu />
             </div>
