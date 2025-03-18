@@ -26,7 +26,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
+    <div className="flex flex-col items-center bg-gray-100 p-8">
       {/* Header */}
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Project Title</h1>
 
@@ -81,7 +81,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5">
     <LandingPage />
     </div>
   );
