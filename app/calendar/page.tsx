@@ -105,8 +105,7 @@ const MyCalendar = () => {
   );
 
   return (
-    <div className="w-full max-w-4xl">
-      <div className="flex justify-between items-center mb-4">
+    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 relative z-0">
         <Calendar
           localizer={localizer}
           events={events}
@@ -123,7 +122,6 @@ const MyCalendar = () => {
             },
           }}
         />
-      </div>
 
       {/* Modal for adding event */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -169,8 +167,6 @@ const MyCalendar = () => {
 
 export default function CalendarApp() {
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5">
       <MyCalendar />
-    </div>
   );
 }

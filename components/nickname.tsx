@@ -40,7 +40,6 @@ export default function NicknameInput() {
           Save
         </button>
       </form>
-      {nickname && <p className="text-green-600">Your nickname: {nickname}</p>}
     </div>
   );
 }
