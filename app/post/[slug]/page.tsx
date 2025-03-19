@@ -59,9 +59,10 @@ export default function PostThreadPage() {
   }, [postID]);
 
   const isValidReply = (reply: string) => {
-    // Remove all HTML tags
-    const strippedText = reply.replace(/<[^>]*>/g, '').trim();
-    return /[A-Za-z0-9]/.test(strippedText);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(reply, 'text/html');
+    const textContent = doc.body?.textContent?.trim() || '';
+    return /[A-Za-z0-9]/.test(textContent);
 }
 
   const handleReply = async (e: React.FormEvent) => {
