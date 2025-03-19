@@ -11,12 +11,6 @@ export default function NicknameInput() {
 
   const { nickname, setNickname } = nicknameContext;
 
-  useEffect(() => {
-    if (!nickname) {
-      setNickname("Anonymous");
-    }
-  }, [nickname, setNickname]);
-
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
