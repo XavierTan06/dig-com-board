@@ -35,13 +35,18 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Roadmap
+## Features TODO
+- Various stylistic changes eg exact colour, fonts (use the one from the slides) etc.
+- Add landing page images (in sharepoint already).
+- Landing page "find out more" expandable/dropdown/show hidden text thingy.
+- Change from modal nickname-prompt, to an additional form field for name. Once keyed in for first time, subsequently have the name as placeholder in the field.
 
-- Top level banner
-    - Side navbar
-- Homepage
-    - Posts feed 
-        - Like function
-        - Tap to open post
-- Create post page
-- Calendar
+## Bugfixes required
+- Element overlaps (if still exist). To at least verify across several screen sizes.
+
+## Low priority
+- Loading symbol when feed taking long to load.
+
+## Report
+- Consider how long term maintenance/ownership/administration of app will be conducted.
+- Note limitations of app background picture, distortion etc for non-optimised display sizes (eg non-mobile formats).
