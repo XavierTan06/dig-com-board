@@ -59,6 +59,7 @@ export default function PostThreadPage() {
   }, [postID]);
 
   const handleReply = async (e: React.FormEvent) => {
+    console.log("handleReply + " + myReply);
     if (!myReply.trim()) {
         alert('Your comment cannot be empty!');
         return;
@@ -87,6 +88,7 @@ export default function PostThreadPage() {
           console.error("Post ID is undefined");
       }
       setMyReply('');
+      console.log(myReply);
   };
 
   const handleModalSubmit = () => {
