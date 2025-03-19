@@ -8,7 +8,9 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     const nicknameContext = useContext(NicknameContext);
-    const nickname = "Browsing as: " + (nicknameContext?.nickname ?? "Anonymous");
+    const nickname = nicknameContext?.nickname 
+        ? "Browsing as: " + nicknameContext.nickname 
+        : "Browsing anonymously";
     console.log(nickname);
 
     return (
