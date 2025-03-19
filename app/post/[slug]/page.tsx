@@ -58,18 +58,23 @@ export default function PostThreadPage() {
       fetchReplies();
   }, [postID]);
 
+  const isValidReply = (reply: string) => {
+    // Remove all HTML tags
+    const strippedText = reply.replace(/<[^>]*>/g, '').trim();
+    return /[A-Za-z0-9]/.test(strippedText);
+}
+
   const handleReply = async (e: React.FormEvent) => {
     console.log("handleReply + " + myReply);
-    if (!myReply.trim()) {
+    if (!isValidReply(myReply)) {
         alert('Your comment cannot be empty!');
         return;
-      }
-      e.preventDefault();
-      if (!nickname.trim()) {
+    }
+    e.preventDefault();
+    if (!nickname.trim()) {
         setShowModal(true);
         return;
-      }
-
+    }
     // Optimistically add the new reply to the list of replies
     const newReply = {
         reply_text: myReply,
@@ -77,18 +82,18 @@ export default function PostThreadPage() {
         reply_date: new Date().toISOString(),
         parent_post: postID,
         author: nickname
-      };
-      setReplies([newReply, ...replies]); // Immediately add to the UI
-      
-      const formData = new FormData();
-      formData.append('reply_text', myReply);
-      if (postID) {
-          await reply(formData, postID, nickname);
-      } else {
-          console.error("Post ID is undefined");
-      }
-      setMyReply('');
-      console.log(myReply);
+    };
+    setReplies([newReply, ...replies]); // Immediately add to the UI
+    
+    const formData = new FormData();
+    formData.append('reply_text', myReply);
+    if (postID) {
+        await reply(formData, postID, nickname);
+    } else {
+        console.error("Post ID is undefined");
+    }
+    setMyReply('');
+    console.log(myReply);
   };
 
   const handleModalSubmit = () => {
