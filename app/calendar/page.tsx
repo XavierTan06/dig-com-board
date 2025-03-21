@@ -167,6 +167,8 @@ const MyCalendar = () => {
 
 export default function CalendarApp() {
   return (
+    <div className="p-6">
       <MyCalendar />
+    </div>
   );
 }
