@@ -33,7 +33,15 @@ const SideMenu: React.FC = () => {
       }
       open={sidebarOpen}
       onSetOpen={onSetSidebarOpen}
-      styles={{ sidebar: { background: "#df8f28", color: "white", zIndex: "70" }, overlay: { zIndex: "60" }}}
+      styles={{
+        sidebar: {
+          background: "#df8f28",
+          color: "white",
+          zIndex: "70",
+          position: "fixed", // Added to make the sidebar fixed
+        },
+        overlay: { zIndex: "60" },
+      }}
     >
       <Header toggleSidebar={() => onSetSidebarOpen(!sidebarOpen)} />
       {/* The Outlet renders the nested routes like Home or Create */}
