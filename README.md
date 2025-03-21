@@ -38,8 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Features TODO
 - Various stylistic changes eg exact colour, fonts (use the one from the slides) etc.
 - Add landing page images (in sharepoint already).
-- Landing page "find out more" expandable/dropdown/show hidden text thingy.
-- Change from modal nickname-prompt, to an additional form field for name. Once keyed in for first time, subsequently have the name as placeholder in the field.
 
 ## Bugfixes required
 - Element overlaps (if still exist). To at least verify across several screen sizes.
@@ -50,3 +48,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Report
 - Consider how long term maintenance/ownership/administration of app will be conducted.
 - Note limitations of app background picture, distortion etc for non-optimised display sizes (eg non-mobile formats).
+
+## Recently completed
+- Change from modal nickname-prompt, to an additional form field for name. Once keyed in for first time, subsequently have the name as placeholder in the field. 
+- Landing page "find out more" expandable/dropdown/show hidden text thingy.
