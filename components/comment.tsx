@@ -29,7 +29,7 @@ function Comment({ text, like_count, date, reply_id, author }: CommentProps) {
     const sanitizedText = DOMPurify.sanitize(text);
 
     return (
-        <div className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 md:p-6 lg:p-8">
+        <div className="bg-gray-200 p-0 rounded-lg mb-1 border border-gray-300 pl-1 md:p-6 lg:p-8">
             <p className="italic text-gray-600">{author}</p>
             <p className="text-blue-500 mt-2 md:mt-4 lg:mt-6" dangerouslySetInnerHTML={{ __html: sanitizedText }} />
             <div className="flex items-center mt-3 md:mt-4 lg:mt-6">

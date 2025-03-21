@@ -41,7 +41,7 @@ const Post: React.FC<PostProps> = ({ title, text, like_count, reply_count, date,
 
     return (
         <div 
-            className="p-0 rounded-lg mb-1 border-5 md:p-6 lg:p-8 cursor-pointer z-40" 
+            className="p-0 rounded-lg mb-1 border-5 md:p-6 lg:p-8 cursor-pointer z-40 pl-1" 
             onClick={() => handleClick(id)}
             style={{
             cursor: isDisabledOnPage ? 'default' : 'pointer', // Change cursor based on condition
