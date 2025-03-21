@@ -4,27 +4,10 @@ import { useContext, useState } from "react";
 import { NicknameContext } from "@/context/context";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import NicknameInput from "@/components/nickname";
 
 function LandingPage() {
-  const nicknameContext = useContext(NicknameContext);
   const router = useRouter();
-  const [inputValue, setInputValue] = useState("");
   const [showMore, setShowMore] = useState(false); // State to toggle "Show More" content
-
-  if (!nicknameContext) {
-    throw new Error("LandingPage must be used within a NicknameProvider");
-  }
-
-  const { nickname, setNickname } = nicknameContext;
-
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputValue.trim()) {
-      setNickname(inputValue);
-      setInputValue("");
-    }
-  };
 
   return (
     <div className="flex flex-col items-center bg-gray-100 p-8 z-0">
@@ -36,8 +19,6 @@ function LandingPage() {
         <img src="/placeholder2.jpg" alt="Image 2" className="w-32 h-32 object-cover rounded-lg shadow-md" />
         <img src="/placeholder3.jpg" alt="Image 3" className="w-32 h-32 object-cover rounded-lg shadow-md" />
       </div>
-
-      <NicknameInput />
 
       {/* Show More Section */}
       <div className="mb-6">
