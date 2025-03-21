@@ -10,6 +10,7 @@ function LandingPage() {
   const nicknameContext = useContext(NicknameContext);
   const router = useRouter();
   const [inputValue, setInputValue] = useState("");
+  const [showMore, setShowMore] = useState(false); // State to toggle "Show More" content
 
   if (!nicknameContext) {
     throw new Error("LandingPage must be used within a NicknameProvider");
@@ -29,7 +30,7 @@ function LandingPage() {
     <div className="flex flex-col items-center bg-gray-100 p-8 z-0">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Healthy Bedok North!</h1>
       <p className="text-lg text-gray-600 mb-6">Improving health of residents and patients</p>
-      {/* Image Container - will need modification eventually when pics furnished*/}
+      {/* Image Container - will need modification eventually when pics furnished */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
         <img src="/placeholder1.jpg" alt="Image 1" className="w-32 h-32 object-cover rounded-lg shadow-md" />
         <img src="/placeholder2.jpg" alt="Image 2" className="w-32 h-32 object-cover rounded-lg shadow-md" />
@@ -37,6 +38,21 @@ function LandingPage() {
       </div>
 
       <NicknameInput />
+
+      {/* Show More Section */}
+      <div className="mb-6">
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="p-2 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition"
+        >
+          {showMore ? "Show Less" : "Show More"}
+        </button>
+        {showMore && (
+          <div className="mt-4 text-gray-700">
+            <p>Here is some additional content that was previously hidden.</p>
+          </div>
+        )}
+      </div>
 
       {/* Navigation Buttons */}
       <div className="flex gap-4">
@@ -63,7 +79,6 @@ function LandingPage() {
   );
 }
 
-  
 export default function App() {
   const [isClient, setIsClient] = useState(false); // State to check if the component is rendered on the client
 
@@ -78,7 +93,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5">
-    <LandingPage />
+      <LandingPage />
     </div>
   );
 }
