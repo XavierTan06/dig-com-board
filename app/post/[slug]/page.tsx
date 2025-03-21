@@ -102,8 +102,8 @@ export default function PostThreadPage() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <div className="posts-container grid gap-0 sm:grid-cols-1 lg:grid-cols-1 mt-0">
+    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20">
+      <div className="posts-container grid gap-0 sm:grid-cols-1 lg:grid-cols-1 mt-0 pt-4">
         {post.map((post, index) => (
           <Post
             key={index}
