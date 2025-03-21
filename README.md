@@ -36,7 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Features TODO
-- Various stylistic changes eg exact colour, fonts (use the one from the slides) etc.
+- Various stylistic changes eg exact colours.
 - Add landing page images (in sharepoint already).
 
 ## Bugfixes required
@@ -52,3 +52,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Recently completed
 - Change from modal nickname-prompt, to an additional form field for name. Once keyed in for first time, subsequently have the name as placeholder in the field. 
 - Landing page "find out more" expandable/dropdown/show hidden text thingy.
+- Set Poppins as global font
