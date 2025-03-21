@@ -5,21 +5,7 @@ import Post from "../../components/post";
 import { getPosts } from '../actions';
 
 function HomePage() {
-  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
   const [posts, setPosts] = useState<Record<string, any>[]>([]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-
-    handleResize(); // Set initial size
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -46,9 +32,6 @@ function HomePage() {
                   author={post.author} />
           ))}
       </div><main className="flex flex-col gap-8 items-center sm:items-start mt-8">
-              <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-                  <li>Save and see your changes instantly. Your screen size is {screenSize.width} by {screenSize.height}!</li>
-              </ol>
           </main></>
   )
 }
