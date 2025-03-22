@@ -37,7 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Features TODO
 - Various stylistic changes eg exact colours.
-- Add landing page images (in sharepoint already).
 
 ## Bugfixes required
 - Element overlaps (if still exist). To at least verify across several screen sizes.
@@ -53,3 +52,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Change from modal nickname-prompt, to an additional form field for name. Once keyed in for first time, subsequently have the name as placeholder in the field. 
 - Landing page "find out more" expandable/dropdown/show hidden text thingy.
 - Set Poppins as global font
+- Add landing page images

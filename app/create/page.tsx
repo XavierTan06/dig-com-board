@@ -66,11 +66,11 @@ export default function Create() {
             required
           />
         </div>
-        <div>
           <label htmlFor="post_text">Text:</label>
           <QuillForm value={postText} onChange={setPostText} />
+        <div className="pt-1">
+          <button type="submit">Submit</button>
         </div>
-        <button type="submit">Submit</button>
       </form>
     </div>
   );
