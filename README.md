@@ -37,9 +37,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Features TODO
 - Various stylistic changes eg exact colours.
+- Consider improving responsiveness
 
 ## Bugfixes required
-- Element overlaps (if still exist). To at least verify across several screen sizes.
 
 ## Low priority
 - Loading symbol when feed taking long to load.
@@ -53,3 +53,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Landing page "find out more" expandable/dropdown/show hidden text thingy.
 - Set Poppins as global font
 - Add landing page images
+- Fix various element overlaps with header.
