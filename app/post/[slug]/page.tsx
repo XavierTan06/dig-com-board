@@ -116,7 +116,7 @@ export default function PostThreadPage() {
             author={post.author}
           />
         ))}
-        <form onSubmit={handleReply}>
+        <form onSubmit={handleReply} className="z-0">
           <div>
             <div>
               <label htmlFor="nickname">Nickname:</label>
