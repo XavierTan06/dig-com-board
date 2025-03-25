@@ -1,5 +1,6 @@
 "use server";
 
+import { Suspense } from "react";
 import { getPosts } from "../actions";
 import PostList from "@/components/postlist";
 
@@ -13,7 +14,9 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 mt-4">
       <div className="posts-container grid gap-0 sm:grid-cols-1 lg:grid-cols-1 mt-0">
-        <PostList posts={sortedPosts} />
+        <Suspense fallback={<div>Loading...</div>} >
+          <PostList posts={sortedPosts} />
+        </Suspense>
       </div>
     </div>
   );
