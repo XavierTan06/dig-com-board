@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { FaThumbsUp, FaComment } from "react-icons/fa";
 import { incrementLike } from "../app/actions";
-import DOMPurify from "dompurify";
 
 interface PostProps {
   title: string;
@@ -24,10 +23,9 @@ const Post: React.FC<PostProps> = ({
   id,
   author,
 }) => {
-  const [likes, setLikes] = useState(like_count);
+const [likes, setLikes] = useState<number>(() => like_count);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isDisabledOnPage, setIsDisabledOnPage] = useState(false);
-  const sanitizedText = useMemo(() => DOMPurify.sanitize(text), [text]); //Sanitize text before rendering (prevents hydration mismatch)
   // ✅ Move `window` check inside `useEffect`
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -53,7 +51,7 @@ const Post: React.FC<PostProps> = ({
   };
 
   return (
-    <div
+    <div suppressHydrationWarning
       className="p-0 rounded-lg mb-1 border-5 md:p-6 lg:p-8 cursor-pointer z-40 pl-1"
       onClick={() => handleClick(id)}
       style={{
@@ -70,7 +68,7 @@ const Post: React.FC<PostProps> = ({
       </h2>
       <p
         className="text-blue-500 mt-2 md:mt-4 lg:mt-6"
-        dangerouslySetInnerHTML={{ __html: sanitizedText }}
+        dangerouslySetInnerHTML={{ __html: text }}
       />
       <div className="flex items-center mt-3 md:mt-4 lg:mt-6">
         <div className="flex items-center text-blue-500 mr-6">
