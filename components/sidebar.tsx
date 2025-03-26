@@ -14,19 +14,18 @@ const SideMenu: React.FC = () => {
     <Sidebar
       sidebar={
         <div>
-          <b>Healthy Bedok North</b>
+          <Link href="/">
+            <b>Healthy Bedok North</b>
+          </Link>
           <ul>
             <li>
-              <Link href="/">About</Link>
+              <Link href="/feed">Feed</Link>
             </li>
             <li>
-              <Link href="/feed">Home</Link>
+              <Link href="/create">Create Post</Link>
             </li>
             <li>
-              <Link href="/create">Create</Link>
-            </li>
-            <li>
-              <Link href="/calendar">Calendar</Link>
+              <Link href="/calendar">Events</Link>
             </li>
           </ul>
         </div>
