@@ -29,7 +29,13 @@ export default function RootLayout({
             
             <div className="page">
             <SideMenu />
-            <div style={{ height: "80px" }}></div>
+            <div
+              style={{
+              height: typeof document !== "undefined" 
+                ? document.querySelector('header')?.clientHeight || "80px" 
+                : "80px",
+              }}
+            ></div>
             {children}
             </div>
         </NicknameProvider>
