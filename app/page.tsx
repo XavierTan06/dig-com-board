@@ -74,7 +74,7 @@ export default function App() {
     <div
       className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5"
       style={{
-      backgroundImage: "url(/250221_wetlands_v1.png)",
+      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/250221_wetlands_v1.png)", 
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundAttachment: "fixed",
