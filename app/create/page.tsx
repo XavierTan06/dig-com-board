@@ -40,8 +40,8 @@ export default function Create() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 sm:p-20 mt-4">
-      <h1>Create a New Post</h1>
+    <div className="flex flex-col items-center pl-8 pr-8 gap-5">
+      <h1 style={{ paddingTop: "20px" }}>Create a New Post</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="post_title">Title:</label>
