@@ -65,7 +65,7 @@ export default function App() {
         backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/250221_wetlands_v1.png)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "scroll", //Try to fix mobile background issue
+        backgroundAttachment: "local", //Try to fix mobile background issue
         minHeight: "100vh",
       }}
     >
