@@ -27,13 +27,13 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NicknameProvider> {/* Wrap the entire app in NicknameProvider */}
             
-            <div className="page">
+            <div className="page min-h-svh flex flex-col">
             <SideMenu />
             <div
               style={{
               height: typeof document !== "undefined" 
-                ? document.querySelector('header')?.clientHeight || "80px" 
-                : "80px",
+                ? document.querySelector('header')?.clientHeight || "56px" 
+                : "56px",
               }}
             ></div>
             {children}
