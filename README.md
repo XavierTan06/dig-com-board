@@ -36,13 +36,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Features TODO
-- Various stylistic changes eg exact colours.
-- Consider improving responsiveness
+- Fill in placeholder text, images
 
 ## Bugfixes required
 
 ## Low priority
-- Loading symbol when feed taking long to load.
 
 ## Report
 - Consider how long term maintenance/ownership/administration of app will be conducted.
@@ -54,3 +52,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Set Poppins as global font
 - Add landing page images
 - Fix various element overlaps with header.
+- Various improvements and tweaks to the HTML/CSS.
+- Basic suspense loading (partial).
