@@ -1,32 +1,13 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense } from "react";
-import Image from "next/image"; // Import Next.js Image component
+import { useState, useEffect, Suspense } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const ImageGrid = dynamic(() => import("../components/ImageGrid"));
 
 function LandingPage() {
-  const [showMore, setShowMore] = useState(false); // State to toggle "Show More" content
-
-  const ImageGrid = useMemo(() => (
-    <div className="mt-4 text-white grid grid-cols-1 gap-4">
-      <p>Here is some additional content that was previously hidden.</p>
-      <Image
-        src="/gallery/250207_Wellness Park Plan_Labeled.webp"
-        alt="Image 2"
-        width={240}
-        height={160}
-        className="object-cover rounded-lg shadow-md"
-        loading="lazy"
-      />
-      <Image
-        src="/gallery/250226_therapeutic garden_motion blur.webp"
-        alt="Image 3"
-        width={240}
-        height={160}
-        className="object-cover rounded-lg shadow-md"
-        loading="lazy"
-      />
-    </div>
-  ), []); // Memoize so it doesn't re-render on state change
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div className="flex flex-col items-center p-8 z-0">
@@ -40,36 +21,36 @@ function LandingPage() {
           height={160}
           className="object-cover rounded-lg shadow-md"
           loading="eager"
+          priority
         />
       </div>
 
       {/* Show More Section */}
       <div className="mb-6">
         <button
-          onClick={() => setShowMore(!showMore)}
+          onClick={() => setShowMore((prev) => !prev)}
           className="p-2 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition"
         >
           {showMore ? "Show Less" : "Show More"}
         </button>
-        {showMore && (
+        <div className={`transition-opacity duration-300 ${showMore ? "opacity-100" : "opacity-0 hidden"}`}>
           <Suspense fallback={<div>Loading images...</div>}>
-            {ImageGrid}
+            <ImageGrid />
           </Suspense>
-        )}
+        </div>
       </div>
     </div>
   );
 }
 
 export default function App() {
-  const [isClient, setIsClient] = useState(false); // State to check if the component is rendered on the client
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true); // Set to true once the component is mounted on the client side
+    setIsClient(true);
   }, []);
 
   if (!isClient) {
-    // Optionally render loading screen while waiting for client-side rendering
     return <div>Loading...</div>;
   }
 
@@ -77,7 +58,7 @@ export default function App() {
     <div
       className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5"
       style={{
-        backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/250221_wetlands_v1.png)", 
+        backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/250221_wetlands_v1.png)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
