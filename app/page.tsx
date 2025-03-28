@@ -12,7 +12,7 @@ function LandingPage() {
   return (
     <div className="flex flex-col items-center p-8 z-0">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Healthy Bedok North!</h1>
-      <p className="text-lg text-gray-600 mb-6">Improving health of residents and patients</p>
+      <p className="text-lg text-gray-700 mb-6">Improving health of residents and patients</p>
       <div className="grid grid-cols-1 gap-4 mb-6">
         <Image
           src="/gallery/250226_sculpturepark.png"
