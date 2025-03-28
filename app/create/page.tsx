@@ -41,7 +41,7 @@ export default function Create() {
 
   return (
     <div className="flex flex-col items-center pl-8 pr-8 gap-5">
-      <h1 style={{ paddingTop: "20px" }}>Create a New Post</h1>
+      <h1 style={{ paddingTop: "40px" }}>Create a New Post</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="post_title">Title:</label>

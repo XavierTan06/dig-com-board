@@ -105,7 +105,7 @@ const MyCalendar = () => {
   );
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-5 relative z-0">
+    <div className="flex flex-col items-center p-8 gap-5 relative z-0">
         <Calendar
           localizer={localizer}
           events={events}
@@ -167,8 +167,6 @@ const MyCalendar = () => {
 
 export default function CalendarApp() {
   return (
-    <div className="p-6">
       <MyCalendar />
-    </div>
   );
 }
