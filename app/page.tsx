@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
+import Image from "next/image"; // Import Next.js Image component
 
 function LandingPage() {
   const [showMore, setShowMore] = useState(false); // State to toggle "Show More" content
@@ -11,7 +12,14 @@ function LandingPage() {
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Healthy Bedok North!</h1>
       <p className="text-lg text-gray-600 mb-6">Improving health of residents and patients</p>
       <div className="grid grid-cols-1 gap-4 mb-6">
-        <img src="/gallery/250226_sculpturepark.png" alt="Image 1" className="w-60 h-40 object-cover rounded-lg shadow-md" />
+        <Image
+          src="/gallery/250226_sculpturepark.png"
+          alt="Image 1"
+          width={240}
+          height={160}
+          className="object-cover rounded-lg shadow-md"
+          loading="eager"
+        />
       </div>
 
       {/* Show More Section */}
@@ -25,11 +33,23 @@ function LandingPage() {
         {showMore && (
           <div className="mt-4 text-white grid grid-cols-1 gap-4">
             <p>Here is some additional content that was previously hidden.</p>
-            <img src="/gallery/250226_sculpturepark.png" alt="Image 2" className="w-60 h-40 object-cover rounded-lg shadow-md" />
-            <img src="/gallery/250226_sculpturepark.png" alt="Image 2" className="w-60 h-40 object-cover rounded-lg shadow-md" />
-            
+            <Image
+              src="/gallery/250207_Wellness Park Plan_Labeled.webp"
+              alt="Image 2"
+              width={240}
+              height={160}
+              className="object-cover rounded-lg shadow-md"
+              loading="eager"
+            />
+            <Image
+              src="/gallery/250226_therapeutic garden_motion blur.webp"
+              alt="Image 3"
+              width={240}
+              height={160}
+              className="object-cover rounded-lg shadow-md"
+              loading="eager"
+            />
           </div>
-          
         )}
       </div>
 
