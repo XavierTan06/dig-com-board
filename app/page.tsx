@@ -30,7 +30,7 @@ function LandingPage() {
       </div>
 
       {/* Show More Section */}
-      <div className="mb-6">
+      <div className="mb-6 justify-items-center">
         <button
           onClick={toggleShowMore}
           className=" bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition"
@@ -65,7 +65,7 @@ export default function App() {
         backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/250221_wetlands_v1.png)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "local", //Try to fix mobile background issue
+        backgroundAttachment: "scroll", //Mobile background issue has been minimised?
         minHeight: "100vh",
       }}
     >
