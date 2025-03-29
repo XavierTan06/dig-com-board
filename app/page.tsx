@@ -19,7 +19,7 @@ function LandingPage() {
       <p className="text-lg text-gray-600 mb-6">Improving health of residents and patients</p>
       <div className="grid grid-cols-1 gap-4 mb-6">
         <Image
-          src="/gallery/250322_wetlands_v1_motion blur.webp"
+          src="/gallery/WetlandsBlur.webp"
           alt="Image 1"
           width={240}
           height={160}  
@@ -63,7 +63,7 @@ export default function App() {
     <div
       className="landing-content flex flex-col items-center gap-5 overflow-hidden text-center"
       style={{
-      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/250221_wetlands_v1.png)",
+      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/WetlandsBlur.webp)",
       backgroundSize: "cover",
       backgroundPosition: "center",
       flexGrow: 1,

@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 
 const images = [
-  "/gallery/Wellness Park Design - With big labels-14.webp",
-  "/gallery/250324_Sculpture Park_VF.webp",
-  "/gallery/250326_Bamboo Forest Final.webp",
-  "/gallery/250326_Meditative Pond.webp",
-  "/gallery/Social Kitchen.webp"
+  "/gallery/ParkDesignBigLabels.webp",
+  "/gallery/SculptureParkVF.webp",
+  "/gallery/BambooForest.webp",
+  "/gallery/MeditativePond.webp",
+  "/gallery/SocialKitchen.webp"
 ];
 
 export default function ImageGrid() {
