@@ -57,6 +57,15 @@ form {
   font-weight: bold;
 }
 
+.responsive-height {
+  height: 80px;
+}
+
+@media (min-width: 472px) {
+  .responsive-height {
+    height: 56px;
+  }
+}
 
 @layer base {
   :root {
