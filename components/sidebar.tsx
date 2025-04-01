@@ -19,6 +19,9 @@ const SideMenu: React.FC = () => {
           </Link>
           <ul>
             <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
               <Link href="/feed">Feed</Link>
             </li>
             <li>
