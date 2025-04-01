@@ -29,13 +29,7 @@ export default function RootLayout({
             
             <div className="page min-h-svh flex flex-col">
             <SideMenu />
-            <div
-              style={{
-              height: typeof document !== "undefined" 
-                ? document.querySelector('header')?.clientHeight || "56px" 
-                : "56px",
-              }}
-            ></div>
+            <div className="responsive-height"></div>
             {children}
             </div>
         </NicknameProvider>

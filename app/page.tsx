@@ -19,10 +19,10 @@ function LandingPage() {
       <p className="text-lg text-gray-600 mb-6">Improving health of residents and patients</p>
       <div className="grid grid-cols-1 gap-4 mb-6">
         <Image
-          src="/gallery/250226_sculpturepark.png"
+          src="/gallery/WetlandsBlur.webp"
           alt="Image 1"
           width={240}
-          height={160}
+          height={160}  
           className="object-cover rounded-lg shadow-md"
           loading="eager"
           priority
@@ -38,7 +38,7 @@ function LandingPage() {
           {showMore ? "Show Less" : "Show More"}
         </button>
         <div className={showMore ? "block" : "hidden"}>
-        <p className="text-center text-white pt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p className="text-center text-white pt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <Suspense fallback={<div>Loading images...</div>}>
             <ImageGrid />
           </Suspense>
@@ -63,7 +63,7 @@ export default function App() {
     <div
       className="landing-content flex flex-col items-center gap-5 overflow-hidden text-center"
       style={{
-      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/250221_wetlands_v1.png)",
+      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)), url(/gallery/WetlandsBlur.webp)",
       backgroundSize: "cover",
       backgroundPosition: "center",
       flexGrow: 1,
