@@ -37,6 +37,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Features TODO
 - Fill in placeholder text, images
+- Add About Page with writeup, previous photos (w/ captions)
+- Embed YT video on landing page
+- Setup domain
 
 ## Bugfixes required
 
