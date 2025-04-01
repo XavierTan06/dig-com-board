@@ -6,6 +6,24 @@ import dynamic from "next/dynamic";
 
 const ImageGrid = dynamic(() => import("../components/ImageGrid"));
 
+function Video() {
+  return (
+      <div className="pb-2">
+          <h1 className="text-center text-4xl font-bold text-black mb-2">Project Video</h1>
+          <div className="flex justify-center">
+              <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+              ></iframe>
+          </div>
+      </div>
+  );
+}
+
 function LandingPage() {
   const [showMore, setShowMore] = useState(false);
   
@@ -28,7 +46,7 @@ function LandingPage() {
           priority
         />
       </div>
-
+      <Video />
       {/* Show More Section */}
       <div className="mb-6 justify-items-center">
         <button
