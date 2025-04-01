@@ -12,8 +12,8 @@ function Video() {
           <h1 className="text-center text-4xl font-bold text-black mb-2">Project Video</h1>
           <div className="flex justify-center">
               <iframe
-                  width="560"
-                  height="315"
+                  width="320"
+                  height="180"
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
