@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     const nicknameContext = useContext(NicknameContext);
     const nickname = nicknameContext?.nickname 
         ? "Hello, " + nicknameContext.nickname 
-        : "Hi!";
+        : "Welcome!";
     console.log(nickname);
 
     return (
@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
             <div className="justify-self-start cursor-pointer" onClick={toggleSidebar}>
                 <FiMenu />
             </div>
-            <h1 className="justify-self-center">Community Board</h1>
+            <h1 className="justify-self-center text-center">Community Board</h1>
             <span className="justify-self-end text-[14px]">{nickname}</span>
         </header>
     );
