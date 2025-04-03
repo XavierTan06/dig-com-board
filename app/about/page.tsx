@@ -1,11 +1,11 @@
 import ImageCard from "@/components/ImageCard";
 
 const imagesList = {
-    "/gallery/ParkDesignBigLabels.webp": "caption 1",
-    "/gallery/SculptureParkVF.webp": "caption 2",
-    "/gallery/BambooForest.webp": "caption 3",
-    "/gallery/MeditativePond.webp": "caption 4",
-    "/gallery/SocialKitchen.webp": "caption 5"
+    "/gallery/ParkDesignBigLabels.webp": "Park Design",
+    "/gallery/SculptureParkVF.webp": "Sculptural Garden",
+    "/gallery/BambooForest.webp": "Therapeutic Garden",
+    "/gallery/MeditativePond.webp": "Reflection Pond",
+    "/gallery/SocialKitchen.webp": "Social Kitchen"
 };
 
 const info = `Envision a vibrant health-promoting park for the residents in Bedok North and patients of the future Eastern General Hospital where social connections, active lifestyles, healing spaces and quiet retreats come together to foster a healthier community. 
