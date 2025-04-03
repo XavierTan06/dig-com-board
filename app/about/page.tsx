@@ -27,13 +27,13 @@ function Writeup() {
     <h1 className="text-center text-xl font-bold text-black mb-2">Healthy Bedok North!</h1>
     <p className="text-center text-gray-900 pt-4">{info}</p>
     <div className="flex flex-col justify-center items-center gap-4 pt-4">
-      <div className="flex flex-row items-center gap-1">
-        <p className="text-gray-700 font-medium">A project by</p>
-        <img src="/gallery/ParkDesignBigLabels.webp" alt="SUTD Logo" className="h-8" />
+      <div className="flex flex-row items-center gap-2">
+        <p className="text-gray-700 text-[12] italic">A project by</p>
+        <img src="/sutd_logo.png" alt="SUTD Logo" className="h-8" />
       </div>
-      <div className="flex flex-row items-center gap-1">
-        <p className="text-gray-700 font-medium">In collaboration with</p>
-        <img src="/gallery/ParkDesignBigLabels.webp" alt="EGH Logo" className="h-8" />
+      <div className="flex flex-row items-center gap-2">
+        <p className="text-gray-700 text-[12] italic">In collaboration with</p>
+        <img src="/egh_logo.png" alt="EGH Logo" className="h-8" />
       </div>
     </div>
   </div>;
