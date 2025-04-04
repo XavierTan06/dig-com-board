@@ -4,6 +4,7 @@ import { create } from "../actions";
 import dynamic from "next/dynamic";
 import { NicknameContext } from "@/context/context";
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 // Dynamically import QuillForm with ssr: false to disable SSR for this component
 const QuillForm = dynamic(() => import("@/components/quillform"), {
@@ -15,6 +16,7 @@ export default function Create() {
   const [postText, setPostText] = useState("");
   const nicknameContext = useContext(NicknameContext);
   const [nickname, setNickname] = useState(nicknameContext?.nickname || "");
+  const router = useRouter();
   console.log(nicknameContext);
   console.log(nickname);
 
@@ -36,7 +38,7 @@ export default function Create() {
 
     setPostTitle("");
     setPostText("");
-    window.location.href = `/post/${postID}`;
+    router.push(`/post/${postID}`);
   };
 
   return (

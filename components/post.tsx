@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { FaThumbsUp, FaComment } from "react-icons/fa";
 import { incrementLike } from "../app/actions";
+import { useRouter } from "next/navigation";
 
 interface PostProps {
   title: string;
@@ -27,6 +28,7 @@ const Post: React.FC<PostProps> = ({
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isDisabledOnPage, setIsDisabledOnPage] = useState(false);
   const [isMounted, setIsMounted] = useState(false); // Track mount status
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -48,8 +50,7 @@ const Post: React.FC<PostProps> = ({
 
   const handleClick = (id: string) => {
     if (isDisabledOnPage) return;
-    window.location.href = `/post/${id}`;
-    alert("Redirecting to post page...");
+    router.push(`/post/${id}`);
   };
 
   return (
