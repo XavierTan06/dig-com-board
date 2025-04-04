@@ -23,21 +23,22 @@ function Images() {
 }
 
 function Video() {
-  return <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/FVTKfAWMsKQ?si=liK4HjxCwCLb5fKO"
-    title="YouTube video player"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerPolicy="strict-origin-when-cross-origin"
-    allowFullScreen
-  ></iframe>;
+  return (
+    <iframe
+      className="video-iframe"
+      src="https://www.youtube.com/embed/FVTKfAWMsKQ?si=liK4HjxCwCLb5fKO"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    ></iframe>
+  );
 }
 
 function Writeup() {
   return <div className="pt-4">
     <h1 className="text-center text-xl font-bold text-black mb-2">Healthy Bedok North!</h1>
-    <p className="text-center text-gray-900 pt-4">{info}</p>
+    <p className="text-justify text-gray-900 pt-4 pl-6 pr-6">{info}</p>
     <div className="flex flex-col justify-center items-center gap-4 pt-4">
       <div className="flex flex-row items-center gap-1">
         <p className="text-gray-700 font-medium">A project by</p>
