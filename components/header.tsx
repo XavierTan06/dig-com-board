@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
                 <FiMenu />
             </div>
             <h1 
-                className="justify-self-center cursor-pointer" 
+                className="justify-self-center cursor-pointer font-bold" 
                 onClick={() => window.location.href = '/'}
             >
                 Community Board
