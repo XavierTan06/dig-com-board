@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     const nicknameContext = useContext(NicknameContext);
     const nickname = nicknameContext?.nickname 
         ? "Hello, " + nicknameContext.nickname 
-        : "Hi!";
+        : "Welcome!";
     console.log(nickname);
 
     return (
