@@ -19,12 +19,12 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
             <div className="justify-self-start cursor-pointer" onClick={toggleSidebar}>
                 <FiMenu />
             </div>
-            <h1 className="justify-self-center cursor-pointer font-bold">
+            <h1 className="justify-self-center cursor-pointer font-bold text-center">
                 <Link href="/">
                     Community Board
                 </Link>
             </h1>
-            <span className="justify-self-end text-[14px]">{nickname}</span>
+            <p className="justify-self-end text-[12px] text-center">{nickname}</p>
         </header>
     );
 };
