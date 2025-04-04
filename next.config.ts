@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
 module.exports = {
   experimental: {
     serverActions: {
-      bodySizeLimit: '30mb',
+      bodySizeLimit: '100mb',
     },
   },
 }
