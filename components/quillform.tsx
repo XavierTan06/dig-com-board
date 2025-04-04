@@ -31,7 +31,6 @@ const QuillForm: React.FC<QuillFormProps> = ({ value, onChange }) => {
       onChange={onChange}
       modules={modules}
       formats={formats}
-      placeholder="Write your content here"
     />
   );
 };
