@@ -10,6 +10,7 @@ export async function create(formData: FormData, author: string) {
   const postTitle = formData.get('post_title');
   const postText = formData.get('post_text');
   const postDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })); // GMT+8
+  await sql('SET timezone = "Asia/Singapore"');
   await sql(
     'INSERT INTO test_post (post_id, post_title, post_text, like_count, reply_count, post_date, author) VALUES ($1, $2, $3, $4, $5, $6, $7)',
     [postId, postTitle, postText, 0, 0, postDate, author]
@@ -22,6 +23,7 @@ export async function reply(formData: FormData, parentPost: string, author: stri
   const replyId = uuidv4();
   const replyText = formData.get('reply_text');
   const replyDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })); // GMT+8
+  await sql('SET timezone = "Asia/Singapore"');
   await sql(
     'INSERT INTO test_reply (reply_text, reply_likes, reply_date, parent_post, reply_id, author) VALUES ($1, $2, $3, $4, $5, $6)',
     [replyText, 0, replyDate, parentPost, replyId, author]
